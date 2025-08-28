@@ -1,0 +1,39 @@
+.index-body{
+    display: flex;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background: linear-gradient(to bottom, var(--light-red), var(--dark-red));
+    background-image: url('../img/background_index.png') !important;
+}
+
+#index-login{
+    width: 50%;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;  
+}
+
+#index-form{
+    display: block !important;
+}
+
+#index-login h1{
+    font-size: var(--h1);
+    font-weight: bold;
+    color: var(--green-blue);
+}
+
+#index-logo{
+    width: 50%;
+    display: grid;
+    place-items: center;
+}
+
+#index-logo img{
+    width: 80%;
+}

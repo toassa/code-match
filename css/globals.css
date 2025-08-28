@@ -1,0 +1,20 @@
+:root{
+    /* Cores */
+    --light-red: #910142;
+    --dark-red: #390220;
+    --standart-red: #6c043c;
+    --green-blue: #0ec0c1;
+    --light-gray: #ebf5f3
+
+    /* Fontes */
+    --font-family: 'Arial', 'Heveltica';
+    --h1: 50px;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-family);
+}
