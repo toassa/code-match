@@ -6,17 +6,29 @@
     <link rel="stylesheet" href="../css/globals.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="icon" type="image/png" href="../img/robito.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>CodeMatch</title>
 </head>
 <body class="index-body">
     <section id="index-login">
         <h1>CodeMatch</h1>
-        <div id="index-form">
-            <form action="">
-                <input type="text" placeholder="Usuário" required>
-                <input type="password" placeholder="Senha" required>
-                <button type="submit">Cadastre-se</button>
-                <button type="submit">Entrar</button>
+        <h2>Jogue no código da memória!</h2>
+        <div class="background-div standart-form-div">
+            <form action="" class="standart-form">
+                <div class="input-box">
+                    <span class="material-symbols-outlined">person</span>
+                    <input type="text" placeholder="Usuário" class="standart-form-items form-items-gray" required>
+                </div>
+                <div class="input-box">
+                    <span class="material-symbols-outlined">lock</span>
+                    <input type="password" placeholder="Senha" class="standart-form-items form-items-gray" required>
+                </div>
+                <div class="standart-btn-position">
+                    <button type="submit" class="standart-form-buttons form-items-gray hover-border">Cadastre-se</button>
+                    <button type="submit" class="standart-form-buttons form-items-orange hover-background">Entrar</button>
+                </div>
             </form>
         </div>
     </section>
@@ -24,4 +36,4 @@
         <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
     </section>
 </body>
-</html>
+</html> 

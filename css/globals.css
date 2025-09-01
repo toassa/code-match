@@ -4,11 +4,14 @@
     --dark-red: #390220;
     --standart-red: #6c043c;
     --green-blue: #0ec0c1;
-    --light-gray: #ebf5f3
+    --light-gray: #ebf5f3;
+    --orange: #ff6542;
+    --black: #000000;
 
     /* Fontes */
-    --font-family: 'Arial', 'Heveltica';
-    --h1: 50px;
+    --h1: 70px;
+    --h2: 25px;
+    --font-family: "Lexend Deca", sans-serif;
 }
 
 html, body{
@@ -16,5 +19,32 @@ html, body{
     padding: 0;
     width: 100%;
     height: 100%;
+    font-optical-sizing: auto;
+    font-style: normal;
     font-family: var(--font-family);
 }
+
+.background-div{
+    background-color: var(--light-gray);
+    border-radius: 20px;
+}
+
+.form-items-orange{
+    background-color: var(--orange);
+    border: 2px solid var(--orange);
+    color: var(--light-gray);
+    font-family: var(--font-family);
+}
+
+.form-items-gray{
+    background-color: var(--light-gray);
+    border: 2px solid var(--orange);
+    color: var(--orange);
+    font-family: var(--font-family);
+}
+
+/* .lexend-deca{
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+} */

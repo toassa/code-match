@@ -1,10 +1,8 @@
 .index-body{
     display: flex;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     background: linear-gradient(to bottom, var(--light-red), var(--dark-red));
     background-image: url('../img/background_index.png') !important;
+    background-repeat: round;
 }
 
 #index-login{
@@ -18,14 +16,19 @@
     text-align: center;  
 }
 
-#index-form{
-    display: block !important;
-}
-
 #index-login h1{
     font-size: var(--h1);
     font-weight: bold;
     color: var(--green-blue);
+    margin-bottom: 0;
+}
+
+#index-login h2{
+    font-size: var(--h2);
+    font-weight: bold;
+    color: var(--light-gray);
+    margin-bottom: 60px;
+    margin-top: 0;
 }
 
 #index-logo{
@@ -36,4 +39,73 @@
 
 #index-logo img{
     width: 80%;
+}
+
+.standart-form-div {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-gray);
+    padding: 45px;
+    border-radius: 20px;
+}
+
+.standart-form{
+    display: contents !important;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+}
+
+.input-box .material-symbols-outlined {
+    position: absolute;
+    left: 15px;                /* distância da borda esquerda */
+    top: 29%;                  /* centraliza verticalmente */
+    transform: translateY(-50%);
+    color: var(--green-blue);
+    pointer-events: none;       /* evita bloquear clique dentro do input */
+    font-size: 20px;            /* tamanho do ícone */
+}
+
+.standart-form-items{
+    border-radius: 30px;
+    width: 380px;
+    height: 40px;
+    margin-bottom: 30px;
+    color: var(--black);
+    padding-left: 35px;
+}
+
+.standart-form-items:focus{
+    border-color: var(--green-blue) !important;
+    outline: none;
+}
+
+.standart-form-items::placeholder{
+    font-size: 15px;
+    padding: 0;
+}
+
+.standart-btn-position{
+    display: flex;
+}
+
+.standart-form-buttons{
+    border-radius: 30px;
+    width: 150px;
+    height: 45px;
+    margin: 0 9%;
+}
+
+.hover-border:hover{
+    background-color: var(--light-gray);
+    border: 2px solid var(--green-blue);
+    color: var(--green-blue);
+}
+
+.hover-background:hover{
+    background-color: var(--green-blue);
+    border: 2px solid var(--green-blue);
+    color: var(--light-gray);
 }
