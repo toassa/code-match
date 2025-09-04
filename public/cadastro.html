@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="icon" type="image/png" href="../img/robito.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <title>CodeMatch</title>
+</head>
+<body class="index-body">
+    <section id="index-cadastro">
+        <div id="cadastro-title">
+            <h2>CodeMatch</h2>
+        </div>
+        <form action="" class="">
+            <div class="input-box">
+                <span class="material-symbols-outlined">person</span>
+                <input type="text" placeholder="Nome Completo" class="standart-form-items form-items-gray" required>
+            </div>
+            <div class="input-box">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <input type="text" placeholder="Data de Nascimento" class="standart-form-items form-items-gray" required onfocus="this.type='date'" onblur="if (!this.value) this.type='text'">
+            </div>
+            <div class="input-box">
+                <span class="material-symbols-outlined">docs</span>
+                <input type="text" placeholder="CPF" class="standart-form-items form-items-gray" required>
+            </div>
+            <div class="input-box">
+                <span class="material-symbols-outlined">phone_in_talk</span>
+                <input type="text" placeholder="Telefone" class="standart-form-items form-items-gray" required>
+            </div>
+            <div class="input-box">
+                <span class="material-symbols-outlined">alternate_email</span>
+                <input type="text" placeholder="Email" class="standart-form-items form-items-gray" required>
+            </div>
+            <div class="input-box">
+                <span class="material-symbols-outlined">person</span>
+                <input type="text" placeholder="Usuário" class="standart-form-items form-items-gray" required>
+            </div>
+            <div class="input-box">
+                <span class="material-symbols-outlined">lock</span>
+                <input type="text" placeholder="Senha" class="standart-form-items form-items-gray" required>
+            </div>
+            <div class="standart-btn-position">
+                <button type="submit" class="standart-form-buttons form-items-orange hover-background">Entrar</button>
+            </div>
+        </form>
+    </section>
+    <section class="index-logo">
+        <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
+        <a href="index.html" id="cadastro-link" class="form-items-green hover-border">Já possui cadastro?</a>
+    </section>
+</body>
+</html>

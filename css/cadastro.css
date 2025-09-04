@@ -1,0 +1,37 @@
+#index-cadastro{
+    width: 50%;
+    display: grid;
+    place-items: center;
+    background-color: var(--light-gray);
+}
+
+#cadastro-title{
+    width: 100%;
+    text-align: left;
+    padding-left: 10%;
+}
+
+#index-cadastro h2{
+    font-size: var(--h2);
+    font-weight: bold;
+    color: var(--green-blue);
+    margin: 0;
+}
+
+#cadastro-link{
+    border-radius: 30px;
+    height: 45px;
+    margin: 0 9%;
+    padding: 0 9px;
+    text-decoration: none;
+    line-height: 45px;
+    position: fixed;
+    top: 25px;
+    right: -7%;
+}
+
+#cadastro-link:hover{
+    background-color: var(--green-blue);
+    color: var(--standart-red);
+}
+

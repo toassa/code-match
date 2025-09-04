@@ -4,13 +4,14 @@
     --dark-red: #390220;
     --standart-red: #6c043c;
     --green-blue: #0ec0c1;
-    --light-gray: #ebf5f3;
+    --light-gray: #ececec;
     --orange: #ff6542;
     --black: #000000;
 
     /* Fontes */
     --h1: 70px;
-    --h2: 25px;
+    --h2: 50px;
+    --h3: 25px;
     --font-family: "Lexend Deca", sans-serif;
 }
 
@@ -40,6 +41,13 @@ html, body{
     background-color: var(--light-gray);
     border: 2px solid var(--orange);
     color: var(--orange);
+    font-family: var(--font-family);
+}
+
+.form-items-green{
+    background-color: none;
+    border: 2px solid var(--green-blue);
+    color: var(--green-blue);
     font-family: var(--font-family);
 }
 
