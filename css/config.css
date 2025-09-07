@@ -1,0 +1,53 @@
+#config-game {
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#config-game h1 {
+    font-size: var(--h1);
+    font-weight: bold;
+    color: var(--green-blue);
+    margin-top: -60px;
+    margin-bottom: 48px;
+}
+
+#config-game h2 {
+    color: var(--light-red);
+    font-size: 30px;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
+.select-game {
+    background-color: var(--orange);
+    border-radius: 30px;
+    width: 380px;
+    height: 40px;
+    margin-bottom: 30px;
+    color: var(--light-gray);
+    padding-left: 35px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.select-game option {
+    background-color: var(--light-gray);
+    color: var(--orange);
+}
+
+.select-game:focus {
+    outline: none;
+}
+
+img {
+  position: absolute;
+  right: 50px;
+  bottom: auto;
+  width: 375px;
+}

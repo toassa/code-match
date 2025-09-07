@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/globals.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/config.css">
     <link rel="icon" type="image/png" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,5 +14,33 @@
     <title>CodeMatch</title>
 </head>
 <body class="index-body">
+    <section id="config-game">
+        <h1>CodeMatch</h1>
+
+        <div class="background-div standart-form-div">
+            <h2>Configuração do Jogo</h2>
+            <select class="select-game" name="size-game">
+                <option selected hidden>Tamanho do Tabuleiro</option>
+                <option value="2">2x2</option>
+                <option value="4">4x4</option>
+                <option value="6">6x6</option>
+                <option value="8">8x8</option>
+            </select>
+
+            <select class="select-game" name="game-mode">
+                <option selected hidden>Modo de jogo</option>
+                <option value="classico">Clássico</option>
+                <option value="contra-tempo">Contra o tempo</option>
+            </select>
+
+            <div class="standart-btn-position">
+                <a href="index.html" class="standart-form-buttons form-items-gray hover-border">Sair</a>
+                <a href="#" class="standart-form-buttons form-items-orange hover-background">Jogar</a>
+            </div>
+        </div>
+
+        <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
+
+    </section>
 </body>
 </html> 
