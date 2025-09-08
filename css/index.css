@@ -88,6 +88,7 @@
 }
 
 .standart-btn-position{
+    justify-content: center;
     display: flex;
 }
 
