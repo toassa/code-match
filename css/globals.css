@@ -13,11 +13,19 @@
     --h1: 70px;
     --h2: 50px;
     --h3: 25px;
+    --icon: 35px;
+    --p: 20px;
     --font-family: "Lexend Deca", sans-serif;
 
     /* Tamanhos */
-    --card-size: 130px
+    --card-size: 130px;
+    --icon-size: 55px
 }
+
+/* *{
+    margin: 0;
+    padding: 0;
+} */
 
 html, body{
     margin: 0;

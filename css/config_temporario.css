@@ -1,0 +1,55 @@
+.select-fake {
+  position: relative;
+  width: 200px;
+  font-family: sans-serif;
+}
+
+/* Caixa principal (como se fosse o select) */
+.select-fake .selected {
+  background: #f2f2f2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Caixa das opções (inicialmente escondida) */
+.select-fake .options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  z-index: 100;
+}
+
+/* Cada opção */
+.select-fake .options a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.select-fake .options a:hover {
+  background: #eee;
+}
+
+/* Mostrar opções ao passar o mouse */
+.select-fake:hover .options {
+  display: block;
+}
+
+.cartalaranja {
+    border: 2px solid var(--orange);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cartalaranja img {
+    border-radius: 10px;
+}

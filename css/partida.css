@@ -13,27 +13,37 @@
     flex-direction: column;
 }
 
+.relogio h2  {
+    width: 45%;
+    background-color: var(--orange);
+    color: var(--light-gray);
+    font-size: 50px;
+    text-align: center;
+    border-radius: 70px;
+}
+
 .botao-trapaca {
     margin-top: auto;
     display: flex;
-    justify-content: center; 
     text-align: center ;
+    margin-bottom: 5vh;
 }
 
 .botao-trapaca a {
     background-color: transparent !important;
-    margin-bottom: 20px I !important;
+    width: 190px !important;
+    margin: 0;
 }
 
 .partida-info h1{
-    font-size: var(--h1);
+    font-size: var(--h2);
     font-weight: bold;
     color: var(--green-blue);
     margin-bottom: 0;
 }
 
 .partida-info p{
-    font-size: var(--h3);
+    font-size: var(--p);
     color: var(--light-gray);
     margin-bottom: 0;
 }
@@ -56,15 +66,51 @@
 }
 
 .carta {
-  width: var(--card-size);
-  height: var(--card-size);
   background-color: var(--dark-green-blue);
   border: 2px solid var(--green-blue);
   border-radius: 10px;
   cursor: pointer;
 }
 
-.carta img{
+.size-6{
   width: var(--card-size);
   height: var(--card-size);
+}
+
+.partida-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;          
+  align-items: center; 
+  padding-top: 40px;
+}
+
+.partida-buttons a {
+  display: inline-flex;
+  border: 2px solid var(--orange);
+  width: var(--icon-size);
+  height: var(--icon-size);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .12s ease, background-color .12s ease, border-color .12s ease;
+}
+
+.partida-buttons .material-symbols-outlined {
+  font-size: var(--icon);
+  line-height: 1;
+  color: var(--light-gray);
+  display: inline-block;
+}
+
+.partida-buttons a {
+  background: transparent;
+  border: 2px solid var(--orange);
+}
+
+.partida-buttons a:hover {
+  transform: translateY(-3px);
+  border: 2px solid var(--green-blue);
 }
