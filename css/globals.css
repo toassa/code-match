@@ -4,6 +4,7 @@
     --dark-red: #390220;
     --standart-red: #6c043c;
     --green-blue: #0ec0c1;
+    --dark-green-blue: #198a8b;
     --light-gray: #ececec;
     --orange: #ff6542;
     --black: #000000;
@@ -13,6 +14,9 @@
     --h2: 50px;
     --h3: 25px;
     --font-family: "Lexend Deca", sans-serif;
+
+    /* Tamanhos */
+    --card-size: 130px
 }
 
 html, body{

@@ -1,0 +1,70 @@
+#partida{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.partida-info {
+    width: 20%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.botao-trapaca {
+    margin-top: auto;
+    display: flex;
+    justify-content: center; 
+    text-align: center ;
+}
+
+.botao-trapaca a {
+    background-color: transparent !important;
+    margin-bottom: 20px I !important;
+}
+
+.partida-info h1{
+    font-size: var(--h1);
+    font-weight: bold;
+    color: var(--green-blue);
+    margin-bottom: 0;
+}
+
+.partida-info p{
+    font-size: var(--h3);
+    color: var(--light-gray);
+    margin-bottom: 0;
+}
+
+.partida-jogo {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.partida-buttons {
+    width: 10%;
+}
+
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.carta {
+  width: var(--card-size);
+  height: var(--card-size);
+  background-color: var(--dark-green-blue);
+  border: 2px solid var(--green-blue);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.carta img{
+  width: var(--card-size);
+  height: var(--card-size);
+}
