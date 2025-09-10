@@ -34,7 +34,16 @@
 .table_perfil {
     background-color: var(--light-gray);
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+.info{
+    background-color: var(--light-gray);
+    border-radius: 10px;
+}
+
+.info h3 {
+    color: var(--black);
 }
 
 
