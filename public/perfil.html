@@ -66,12 +66,20 @@
             <div>
                 <h2>ESTATISTICA</h2>
                 <div class="estatistica">
-                    <a href="cadastro.html" class="standart-form-buttons form-items-orange hover-border">MODO DO JOGO</a>
-                    <a href="config.html" class="standart-form-buttons form-items-orange hover-background">TABULEIRO</a>
-                    <p>PARTIDAS</p>
-                    <p>VITORIAS</p>
-                    <p>127</p>
-                    <p>98</p>
+                    <select class="select-game" name="size-game">
+                        <option selected hidden>MODO DO JOGO</option>
+                        <option value="2">QUALQUER</option>
+                        <option value="4">CLASSICO</option>
+                        <option value="6">CONTRA TEMPO</option>
+                    </select>
+                    <select class="select-game" name="size-game">
+                        <option selected hidden>TABULEIRO</option>
+                        <option value="2">TODOS</option>
+                        <option value="4">2X2</option>
+                        <option value="6">4X4</option>
+                        <option value="6">6X6</option>
+                        <option value="6">8X8</option>
+                    </select>
                 </div>
             </div>
         </div>
