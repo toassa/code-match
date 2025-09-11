@@ -1,3 +1,67 @@
-#ranking{
-    
+#ranking {
+
+}
+
+#ranking h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--green-blue);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.div-pagina {
+    display: flex;
+    gap: 20px;
+}
+
+.div-filtro {
+    flex-basis: 30%;
+
+    background-color: var(--light-gray);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+}
+
+.div-ranking {
+    flex-basis: 70%;
+}
+
+.div-filtro h2 {
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--orange);
+    text-align: center;
+}
+
+
+.div-filtro p {
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+    margin: 10px;
+}
+
+.select-game {
+    background-color: var(--green-blue);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-family: var(--font-family);
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.table-ranking {
+    align-items: center;
+    background-color: var(--light-gray);
+    padding: 20px;
+    border-radius: 8px;
+    /* Arredonda os cantos da caixa */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+
 }

@@ -1,21 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/globals.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/config.css">
+    <link rel="stylesheet" href="../css/ranking.css">
     <link rel="stylesheet" href="../css/config_temporario.css">
     <link rel="icon" type="image/png" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>CodeMatch</title>
 </head>
+
 <body class="index-body">
     <section id="ranking">
-        
+        <h1>RANKING GLOBAL</h1>
+        <div class="div-pagina">
+            <div class="div-filtro">
+                <h2>FILTRAR</h2>
+                <div class="filtrar-ranking">
+                    <p>TABULEIRO</p>
+                    <select class="select-game" name="size-game">
+                        <option selected hidden>QUALQUER</option>
+                        <option value="1">2X2</option>
+                        <option value="2">4X4</option>
+                        <option value="3">6X6</option>
+                        <option value="4">8X8</option>
+                    </select>
+                    <p>MODO DE JOGO</p>
+                    <select class="select-game" name="size-game">
+                        <option selected hidden>QUALQUER</option>
+                        <option value="1">CLÁSSICO</option>
+                        <option value="2">CONTRA TEMPO</option>
+                    </select>
+                    <p>FILTRO</p>
+                    <input type="radio" id="filtro-tempo" name="filtro" checked>
+                    <label for="filtro-tempo">TEMPO</label>
+
+                    <input type="radio" id="filtro-jogadas" name="filtro">
+                    <label for="filtro-jogadas">N° DE JOGADAS</label>
+                </div>
+            </div>
+            <div class="div-ranking">
+                <table class="table-ranking">
+                    <tr>
+                        <th>TABULEIRO</th>
+                        <th>MODALIDADE</th>
+                        <th>TEMPO</th>
+                        <th>RESULTADO</th>
+                        <th>DATA/HORA</th>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </section>
 </body>
-</html> 
+
+</html>
