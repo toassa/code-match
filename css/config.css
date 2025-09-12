@@ -46,7 +46,7 @@
     outline: none;
 }
 
-img {
+#config-game img {
   position: absolute;
   right: 50px;
   bottom: auto;

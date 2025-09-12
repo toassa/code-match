@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,89 +9,109 @@
     <link rel="icon" type="image/png" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <title>CodeMatch</title>
 </head>
-<body class="perfil-body">
-    <section id="perfil-table">
-        <div>
-            <h2>HISTORICO PESSOAL</h2>
-            <table class="table_perfil">
-                <tr>
-                    <th>TABULEIRO</th>
-                    <th>MODALIDADE</th>
-                    <th>TEMPO</th>
-                    <th>RESULTADO</th>
-                    <th>DATA/HORA</th>
-                </tr>
-                <tr>
-                    <td>8x8</td>
-                    <td>CONTRA O TEMPO</td>
-                    <td>11:00</td>
-                    <td>VITÓRIA</td>
-                    <td>08/09/2025 - 16:54</td>
-                </tr>
-                <tr>
-                    <td>8x8</td>
-                    <td>CONTRA O TEMPO</td>
-                    <td>11:00</td>
-                    <td>VITÓRIA</td>
-                    <td>08/09/2025 - 16:54</td>
-                </tr>
-                <tr>
-                    <td>8x8</td>
-                    <td>CONTRA O TEMPO</td>
-                    <td>11:00</td>
-                    <td>VITÓRIA</td>
-                    <td>08/09/2025 - 16:54</td>
-                </tr>
-                <tr>
-                    <td>8x8</td>
-                    <td>CONTRA O TEMPO</td>
-                    <td>11:00</td>
-                    <td>VITÓRIA</td>
-                    <td>08/09/2025 - 16:54</td>
-                </tr>
-            </table>
-        </div>
-        <div>
-            <h2>PERFIL</h2>
-            <div class="personal_info">
-                <p class="title">USERNAME</p>
-                    <p class="content">TREENI</p>
-                <p class="title">NOME COMPLETO</p>
-                    <p class="content">Antonio Carlos Rosedo</p>
-                <p class="title">E-MAIL</p>
-                    <p class="content">exemplo@exemplo.com<p>
-            </div>
-            <div>
-                <h2>ESTATISTICA</h2>
-                <div class="estatistica">
-                    <select class="select-game" name="size-game">
-                        <option selected hidden>MODO DO JOGO</option>
-                        <option value="2">QUALQUER</option>
-                        <option value="4">CLASSICO</option>
-                        <option value="6">CONTRA TEMPO</option>
-                    </select>
-                    <select class="select-game" name="size-game">
-                        <option selected hidden>TABULEIRO</option>
-                        <option value="2">TODOS</option>
-                        <option value="4">2X2</option>
-                        <option value="6">4X4</option>
-                        <option value="6">6X6</option>
-                        <option value="6">8X8</option>
-                    </select>
-                    <div class="test">
-                        <p class="title">VITÓRIA</p>
-                        <p class="title">PARTIDA</p>
-                    </div>
 
+<body class="perfil-body">
+    <div class="botao-voltar">
+        <a href="javascript:history.back()"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+    </div>
+
+    <section id="perfil-table">
+        <div class="div-pagina">
+            <div class="div-tabela">
+                <h2>HISTORICO PESSOAL</h2>
+                <table class="table-perfil">
+                    <tr>
+                        <th>TABULEIRO</th>
+                        <th>MODALIDADE</th>
+                        <th>TEMPO</th>
+                        <th>RESULTADO</th>
+                        <th>DATA/HORA</th>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                    <tr>
+                        <td>8x8</td>
+                        <td>CONTRA O TEMPO</td>
+                        <td>11:00</td>
+                        <td>VITÓRIA</td>
+                        <td>08/09/2025 - 16:54</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+            <div class="div-info-perfil">
+                <h2>PERFIL</h2>
+                <div class="personal_info">
+                    <p class="title">USERNAME</p>
+                    <p class="content">TREENI</p>
+                    <p class="title">NOME COMPLETO</p>
+                    <p class="content">Antonio Carlos Rosedo</p>
+                    <p class="title">E-MAIL</p>
+                    <p class="content">exemplo@exemplo.com</p>
+                </div>
+                <div class="div-estatistica">
+                    <h2>ESTATISTICA</h2>
+                    <div class="estatistica">
+                        <select class="select-game" name="size-game">
+                            <option selected hidden>MODO DO JOGO</option>
+                            <option value="2">QUALQUER</option>
+                            <option value="4">CLASSICO</option>
+                            <option value="6">CONTRA TEMPO</option>
+                        </select>
+                        <select class="select-game" name="size-game">
+                            <option selected hidden>TABULEIRO</option>
+                            <option value="2">TODOS</option>
+                            <option value="4">2X2</option>
+                            <option value="6">4X4</option>
+                            <option value="6">6X6</option>
+                            <option value="6">8X8</option>
+                        </select>
+                        <div class="test">
+                            <p class="title">VITÓRIA</p>
+                            <p class="title">PARTIDA</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
+
+    <div class="partida-buttons buttons-absolute">
+        <a href="index.html" title="Sair">
+            <span class="material-symbols-outlined">logout</span>
+        </a>
+        <a href="ranking.html" title="Ranking Global">
+            <span class="material-symbols-outlined">social_leaderboard</span>
+        </a>
+        <a href="perfil.html" title="Jogar agora!">
+            <img src="../img/robito_branco.png" alt="">
+        </a>
+    </div>
     <!-- <section class="index-logo">
         <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
     </section> -->
 </body>
+
 </html>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/cadastro.css">
     <link rel="stylesheet" href="../../css/partida.css">
     <link rel="stylesheet" href="../../css/config_temporario.css">
+    <link rel="stylesheet" href="../../css/blur.css">
     <link rel="icon" type="image/png" href="../../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +16,10 @@
     <title>CodeMatch</title>
 </head>
 <body class="index-body">
-    <div class="botao-voltar">
-        <a href="../config.html"><span class="material-symbols-outlined">arrow_back_ios</span></a>
-    </div>
     <section id="partida">
+        <div class="botao-voltar">
+            <a href="javascript:history.back()"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+        </div>
         <div class="partida-info">
             <h1>Contra o Tempo</h1>
             <p>Tabuleiro 6x6</p>
@@ -138,21 +139,32 @@
                     <img src="../../img/devs/john_von_neumann.jpg" alt="Imagem mascote robô" class="size-6">
                 </div>
                 <div class="cartalaranja size-6">
-                    <a href="blur_contra.html"><img src="../../img/devs/katherine_johnson.jpg" alt="Imagem mascote robô" class="size-6"></a>
+                    <img src="../../img/devs/katherine_johnson.jpg" alt="Imagem mascote robô" class="size-6">
                 </div>
             </div>
         </div>
-        <div class="partida-buttons">
-            <a href="../index.html" title="Sair">
-                <span class="material-symbols-outlined">logout</span>
-            </a>
-            <a href="../ranking.html" title="Ranking Global">
-                <span class="material-symbols-outlined">social_leaderboard</span>
-            </a>
-            <a href="../perfil.html" title="Perfil">
-                <span class="material-symbols-outlined">person</span>
-            </a>
+
+        <div class="overlay">
+            <div class="background-div standart-form-div ">
+                <h2>Quer jogar outra partida?</h2>
+                <div class="standart-btn-position">
+                    <a href="../perfil.html" class="standart-form-buttons form-items-orange hover-background">Não</a>
+                    <a href="../config.html" class="standart-form-buttons form-items-orange hover-background">Sim</a>
+                  </div>
+                </form>
+            </div>
         </div>
+            <div class="partida-buttons">
+                <a href="../index.html">
+                    <span class="material-symbols-outlined">logout</span>
+                </a>
+                <a href="../ranking.html">
+                    <span class="material-symbols-outlined">social_leaderboard</span>
+                </a>
+                <a href="../perfil.html">
+                    <span class="material-symbols-outlined">person</span>
+                </a>
+            </div>
     </section>
 </body>
 </html> 

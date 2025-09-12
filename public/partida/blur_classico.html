@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/cadastro.css">
     <link rel="stylesheet" href="../../css/partida.css">
     <link rel="stylesheet" href="../../css/config_temporario.css">
+    <link rel="stylesheet" href="../../css/blur.css">
     <link rel="icon" type="image/png" href="../../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +16,17 @@
     <title>CodeMatch</title>
 </head>
 <body class="index-body">
-    <div class="botao-voltar">
-        <a href="../config.html"><span class="material-symbols-outlined">arrow_back_ios</span></a>
-    </div>
     <section id="partida">
+        <div class="botao-voltar">
+            <a href="javascript:history.back()"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+        </div>
         <div class="partida-info">
-            <h1>Contra o Tempo</h1>
+            <h1>Clássico</h1>
             <p>Tabuleiro 6x6</p>
+            <p>Tempo de partida: 00:00</p>
             <p>Número de jogadas: 10</p>
-            <div class="relogio center">
-                <h2>00:55</h2>
-            </div>
             <div class="botao-trapaca">
-                <a href="contra_tempo.html" class="standart-form-buttons form-items-gray hover-border">Modo Contra o Tempo</a>
+                <a href="classico.html" class="standart-form-buttons form-items-gray hover-border">Modo Clássico</a>
             </div>
         </div>
         <div class="partida-jogo center">
@@ -138,10 +137,22 @@
                     <img src="../../img/devs/john_von_neumann.jpg" alt="Imagem mascote robô" class="size-6">
                 </div>
                 <div class="cartalaranja size-6">
-                    <a href="blur_contra.html"><img src="../../img/devs/katherine_johnson.jpg" alt="Imagem mascote robô" class="size-6"></a>
+                    <a href="blur_classico.html"><img src="../../img/devs/katherine_johnson.jpg " alt="Imagem mascote robô" class="size-6"></a>
                 </div>
             </div>
         </div>
+
+        <div class="overlay">
+            <div class="background-div standart-form-div ">
+                <h2>Quer jogar outra partida?</h2>
+                <div class="standart-btn-position">
+                    <a href="../perfil.html" class="standart-form-buttons form-items-orange hover-background">Não</a>
+                    <a href="../config.html" class="standart-form-buttons form-items-orange hover-background">Sim</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+
         <div class="partida-buttons">
             <a href="../index.html" title="Sair">
                 <span class="material-symbols-outlined">logout</span>

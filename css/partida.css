@@ -7,10 +7,11 @@
 }
 
 .partida-info {
-    width: 20%;
-    padding-left: 20px;
-    display: flex;
-    flex-direction: column;
+  width: 20%;
+  padding-left: 100px;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
 }
 
 .relogio h2  {
@@ -55,10 +56,6 @@
     align-items: center;
 }
 
-.partida-buttons {
-    width: 10%;
-}
-
 .tabuleiro {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -75,42 +72,4 @@
 .size-6{
   width: var(--card-size);
   height: var(--card-size);
-}
-
-.partida-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;          
-  align-items: center; 
-  padding-top: 40px;
-}
-
-.partida-buttons a {
-  display: inline-flex;
-  border: 2px solid var(--orange);
-  width: var(--icon-size);
-  height: var(--icon-size);
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform .12s ease, background-color .12s ease, border-color .12s ease;
-}
-
-.partida-buttons .material-symbols-outlined {
-  font-size: var(--icon);
-  line-height: 1;
-  color: var(--light-gray);
-  display: inline-block;
-}
-
-.partida-buttons a {
-  background: transparent;
-  border: 2px solid var(--orange);
-}
-
-.partida-buttons a:hover {
-  transform: translateY(-3px);
-  border: 2px solid var(--green-blue);
 }

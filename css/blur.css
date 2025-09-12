@@ -1,0 +1,38 @@
+body.index-body {
+    position: relative;
+    overflow: hidden;
+}
+
+body.index-body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(8px);   
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 5;
+    pointer-events: none; 
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+  
+ .overlay h2 {
+    color: var(--light-red);
+    font-size: 30px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+.botao-voltar{
+    z-index: 10;
+}

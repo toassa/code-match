@@ -1,5 +1,6 @@
 #ranking {
-
+    text-align: center;
+    width: 100%;
 }
 
 #ranking h1 {
@@ -12,27 +13,31 @@
 
 .div-pagina {
     display: flex;
-    gap: 20px;
+    width: 100%;
 }
 
 .div-filtro {
-    flex-basis: 30%;
-
+    width: 80%;
     background-color: var(--light-gray);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 30px 30px;
 }
 
 .div-ranking {
-    flex-basis: 70%;
+    width: 65%;
 }
 
 .div-filtro h2 {
     font-size: 35px;
     font-weight: bold;
-    color: var(--orange);
+    color: var(--green-blue);
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -43,7 +48,16 @@
     margin: 10px;
 }
 
+.div-filtro-box {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 30px;
+}
+
 .select-game {
+    width: 100%;
     background-color: var(--green-blue);
     color: #fff;
     border: none;
@@ -56,12 +70,63 @@
     cursor: pointer;
 }
 
+.select-game option {
+    background-color: var(--light-gray);
+    color: var(--green-blue);
+}
+
 .table-ranking {
-    align-items: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: var(--light-gray);
     padding: 20px;
     border-radius: 8px;
-    /* Arredonda os cantos da caixa */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-spacing: 0 10px;
+}
 
+.table-ranking tr{
+    text-align: center;
+}
+
+.table-ranking td {
+    background-color: var(--orange);
+    color: var(--light-gray);
+    padding: 7px;
+}
+
+.table-ranking .tr-border-left {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.div-filtro input[type="radio"] {
+    display: none;
+}
+
+.div-filtro-int label {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+        background-color: transparent;
+    border: 2px solid var(--green-blue);
+    color: var(--green-blue);
+}
+
+.div-filtro input[type="radio"]:checked + label {
+    background-color: var(--green-blue);
+    color: var(--light-gray);
+}
+
+.label-filtro{
+    border: 3px solid var(--green-blue);
+    padding: 10px 6px;
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
