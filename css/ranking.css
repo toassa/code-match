@@ -101,6 +101,11 @@
     border-bottom-left-radius: 12px;
 }
 
+.table-ranking .tr-border-right {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
 .div-filtro input[type="radio"] {
     display: none;
 }
