@@ -50,5 +50,19 @@
   position: absolute;
   right: 50px;
   bottom: auto;
-  width: 375px;
+  width: 25%;
+}
+
+@media only screen and (max-width: 1170px) {
+    #config-game img {
+        width: 20%;
+        right: 100px;
+        top: 35vh;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    #config-game img {
+        display: none;
+    }
 }
