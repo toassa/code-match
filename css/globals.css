@@ -5,6 +5,7 @@
     --standart-red: #6c043c;
     --green-blue: #0ec0c1;
     --dark-green-blue: #198a8b;
+    /* --gray: #c0b8b8; */
     --light-gray: #ececec;
     --orange: #ff6542;
     --black: #000000;
@@ -24,11 +25,6 @@
     --icon-size: 55px;
     --back-icon: 40px;
 }
-
-/* *{
-    margin: 0;
-    padding: 0;
-} */
 
 html, body{
     margin: 0;
@@ -130,4 +126,13 @@ html, body{
 
 .partida-buttons a img {
     width: 45px;
+}
+
+.partida-buttons .buttons-desistir{
+    background-color: var(--red-defeat);
+}
+
+a.buttons-desistir:hover {
+    background-color: #6b0707;
+    border: 2px solid #6b0707;
 }

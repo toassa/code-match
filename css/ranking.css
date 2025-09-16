@@ -53,7 +53,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px 30px;
+    padding: 0px 30px 0 7%;
 }
 
 .select-game {
@@ -76,13 +76,22 @@
 }
 
 .table-ranking {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+}
+
+.table-ranking tbody{
+    display: block;
+    max-height: 65vh; 
+    overflow-y: auto;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--light-gray);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border-spacing: 0 10px;
 }
 

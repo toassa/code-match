@@ -17,7 +17,7 @@
 }
 
 .div-pagina {
-    width: 90%;
+    width: 96%;
     display: flex;
     gap: 20px;
 }
@@ -33,7 +33,6 @@
 
 .div-info-perfil {
     width: 35%;
-    flex-basis: 35%;
     border-radius: 8px;
     padding: 20px;
 }
@@ -55,7 +54,6 @@
     padding: 10px;
 }
 
-
 .div-estatistica h2{
     font-size: 45px;
     margin-top: 10px;
@@ -71,7 +69,6 @@
     display: flex;
     align-items: center; 
     flex-direction: column;
-
 }
 
 .estatistica-botoes {
@@ -147,7 +144,7 @@
     text-align: center;
     border-radius: 8px;
     padding: 20px;
-    scrollbar-color: var(--orange) var(--dark-red); 
+    scrollbar-color: var(--orange) var(--light-gray); 
     scrollbar-width: thin;
 }
 
@@ -165,14 +162,14 @@
 }
 
 .table-perfil {
-    width: 90%;
+    width: 100%;
     margin: 10px auto;
     background-color: var(--light-gray);
     padding: 0px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border-collapse: separate;
-    border-spacing: 0 10px;
+    border-spacing: 0 5px;
     padding: 10px;
 }
 
@@ -192,25 +189,31 @@
 
 .table-perfil tbody {
     display: block;
-    max-height: 400px; 
+    max-height: 65vh; 
     overflow-y: auto;
 }
 
 .table-perfil tr {
     width: 100%;
-    display: table; 
+    display: table;
     table-layout: fixed;
+    margin: 2px 0;
+    border-radius: 5px;
 }
 
 .table-perfil td {
     padding: 7px;
     text-align: center;
+    font-size: 12px;
     color: var(--light-gray);
 }
 
 .table-perfil .tr-border-left {
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
+    width: 30px;
+    max-width: 30px;
+    text-align: center;
 }
 
 .table-perfil .tr-border-right {
