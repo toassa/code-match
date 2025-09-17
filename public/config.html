@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <title>CodeMatch</title>
 </head>
 <body class="index-body">
@@ -23,7 +23,7 @@
         <div class="background-div standart-form-div">
             <h2>Configuração do Jogo</h2>
             <select class="select-game" name="size-game">
-                <option selected hidden>Tamanho do Tabuleiro</option>
+                <option selected hidden value="">Tamanho do Tabuleiro</option>
                 <option value="2">2x2</option>
                 <option value="4">4x4</option>
                 <option value="6">6x6</option>
@@ -33,7 +33,7 @@
             <!-- BOTÃO TEMPORÁRIO-->
             <form id="form-jogo">
                 <select class="select-game" name="game-mode" required>
-                  <option selected hidden>Modo de jogo</option>
+                  <option selected hidden value="">Modo de jogo</option>
                   <option value="./partida/classico.html">Clássico</option>
                   <option value="./partida/contra_tempo.html">Contra o tempo</option>
                 </select>
@@ -62,7 +62,6 @@
                     <a href="index.html" class="standart-form-buttons form-items-gray hover-border">Sair</a>
                     <a href="" class="standart-form-buttons form-items-orange hover-background">Jogar</a>
                 </div> -->
-            </form>
         </div>
 
         <div class="partida-buttons buttons-absolute">
