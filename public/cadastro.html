@@ -9,46 +9,46 @@
     <link rel="icon" type="image/png" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <title>CodeMatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <title>CodeMatch - Cadastro</title>
 </head>
 <body class="index-body">
     <div id="index-cadastro">
         <div id="cadastro-title">
             <h2>CodeMatch</h2>
         </div>
-    <form action="#" class="">
+        <form action="#" id="cadastro-form">
             <div class="input-box">
                 <span class="material-symbols-outlined">person</span>
-                <input type="text" placeholder="Nome Completo" class="standart-form-items form-items-gray">
+                <input type="text" placeholder="Nome Completo" class="standart-form-items form-items-gray" required>
             </div>
             <div class="input-box">
                 <span class="material-symbols-outlined">calendar_month</span>
-                <input type="text" placeholder="Data de Nascimento" class="standart-form-items form-items-gray" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'">
+                <input type="text" placeholder="Data de Nascimento" class="standart-form-items form-items-gray" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" required>
             </div>
             <div class="input-box">
-                <span class="material-symbols-outlined">docs</span>
-                <input type="text" placeholder="CPF" class="standart-form-items form-items-gray">
+                <span class="material-symbols-outlined">badge</span>
+                <input type="text" placeholder="CPF" class="standart-form-items form-items-gray" maxlength="14" required>
             </div>
             <div class="input-box">
                 <span class="material-symbols-outlined">phone_in_talk</span>
-                <input type="text" placeholder="Telefone" class="standart-form-items form-items-gray">
+                <input type="text" placeholder="Telefone" class="standart-form-items form-items-gray" maxlength="15" required>
             </div>
             <div class="input-box">
                 <span class="material-symbols-outlined">alternate_email</span>
-                <input type="text" placeholder="Email" class="standart-form-items form-items-gray">
+                <input type="email" placeholder="Email" class="standart-form-items form-items-gray" required>
             </div>
             <div class="input-box">
-                <span class="material-symbols-outlined">person</span>
-                <input type="text" placeholder="Usuário" class="standart-form-items form-items-gray">
+                <span class="material-symbols-outlined">account_circle</span>
+                <input type="text" placeholder="Usuário" class="standart-form-items form-items-gray" required>
             </div>
             <div class="input-box">
                 <span class="material-symbols-outlined">lock</span>
-                <input type="text" placeholder="Senha" class="standart-form-items form-items-gray">
+                <input type="password" placeholder="Senha" class="standart-form-items form-items-gray" required>
             </div>
             <div class="standart-btn-position">
-                    <a href="index.html" class="standart-form-buttons form-items-orange hover-background">Cadastrar</a>
-                <!-- <button type="submit" class="standart-form-buttons form-items-orange hover-background">Entrar</button> -->
+                <button type="submit" class="standart-form-buttons form-items-orange hover-background">Cadastrar</button>
             </div>
         </form>
     </div>
@@ -56,5 +56,7 @@
         <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
         <a href="index.html" id="cadastro-link" class="form-items-green hover-border">Já possui cadastro?</a>
     </div>
+    
+    <script src="js\validation.js"></script>
 </body>
 </html>
