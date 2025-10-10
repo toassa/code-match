@@ -163,12 +163,46 @@
             <div class="div-info-perfil">
                 <h2>PERFIL</h2>
                 <div class="personal-info">
-                    <p class="title">USERNAME</p>
-                    <p class="content">TRAINEE</p>
-                    <p class="title">NOME COMPLETO</p>
-                    <p class="content">Antonio Carlos Rosendo da Silva</p>
-                    <p class="title">E-MAIL</p>
-                    <p class="content">exemplo@exemplo.com</p>
+                    <div id="view-mode">
+                        <p class="title">USERNAME</p>
+                        <p class="content">TRAINEE</p>
+                        <p class="title">NOME COMPLETO</p>
+                        <p class="content">Antonio Carlos Rosendo da Silva</p>
+                        <p class="title">E-MAIL</p>
+                        <p class="content">exemplo@gmail.com</p>
+                        <a href="#" id="edit-button" class="edit-icon" title="Editar">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                    </div>
+    
+                    <form id="edit-mode" style="display: none;">
+                        <p class="title">USERNAME</p>
+                        <p class="content">TRAINEE</p>
+                    
+                        <p class="title">NOME COMPLETO</p>
+                        <input type="text" id="edit-nome" value="Antonio Carlos Rosendo da Silva">
+
+                        <p class="title">E-MAIL</p>
+                        <input type="email" id="edit-email" value="exemplo@gmail.com">
+
+                        <p class="title">SENHA</p>
+                        <input type="password" id="edit-senha" value="12345678">
+
+                        <p class="title">TELEFONE</p>
+                        <input type="number" id="edit-telefone" value="1191234-5678">
+
+                        <p class="title">DATA DE NASCIMENTO</p>
+                        <p class="content">01/01/2000</p>
+
+                        <p class="title">CPF</p>
+                        <p class="content">000.000.000-00</p>
+
+                        <div class="standart-btn-position">
+                            <button type="button" id="cancel-button" class="form-items-gray">Cancelar</button>
+                            <button type="submit" id="save-button" class="form-items-orange">Salvar</button>
+                        </div>
+                    </form>
+                    
                 </div>
                 <div class="div-estatistica">
                     <h2>ESTATÍSTICAS</h2>
@@ -216,9 +250,6 @@
             <img src="../img/robito_branco.png" alt="">
         </a>
     </div>
-    <!-- <section class="index-logo">
-        <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
-    </section> -->
+    <script src="../js/perfil.js"></script> 
 </body>
-
 </html>
