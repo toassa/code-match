@@ -1,4 +1,3 @@
-// Função para validar nome completo
 function validarNome(nome) {
     const nomeTrim = nome.trim();
     if (nomeTrim.length < 3) {
@@ -13,7 +12,6 @@ function validarNome(nome) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para validar data de nascimento
 function validarDataNascimento(data) {
     if (!data) {
         return { valido: false, mensagem: "Data de nascimento é obrigatória" };
@@ -43,7 +41,6 @@ function validarDataNascimento(data) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para validar CPF
 function validarCPF(cpf) {
     cpf = cpf.replace(/[^\d]/g, '');
     
@@ -51,12 +48,10 @@ function validarCPF(cpf) {
         return { valido: false, mensagem: "CPF deve ter 11 dígitos" };
     }
     
-    // Verifica se todos os dígitos são iguais
     if (/^(\d)\1{10}$/.test(cpf)) {
         return { valido: false, mensagem: "CPF inválido" };
     }
     
-    // Validação dos dígitos verificadores
     let soma = 0;
     let resto;
     
