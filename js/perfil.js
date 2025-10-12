@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Elementos essenciais (MUITO IMPORTANTE!)
     const editButton = document.getElementById('edit-button'); 
     
     // As duas divisões principais

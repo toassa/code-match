@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
   <link rel="stylesheet" href="../../css/index.css">
   <link rel="stylesheet" href="../../css/cadastro.css">
   <link rel="stylesheet" href="../../css/partida.css">
-  <link rel="icon" type="image/png" href="../../img/robito.png">
+  <link rel="stylesheet" href="../../css/blur.css">
+  <link rel="icon" type="image/jpg" href="../../img/robito.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
@@ -41,7 +43,7 @@
     </div>
 
     <div class="partida-buttons">
-      <a href="blur_desistir.html" title="Desistir" class="buttons-desistir">
+      <a href="#" id="btn-desistir" title="Desistir" class="buttons-desistir">
         <span class="material-symbols-outlined">close</span>
       </a>
 
@@ -53,9 +55,23 @@
         <span class="material-symbols-outlined">person</span>
       </a>
     </div>
+
+    <div id="desistencia-modal" class="overlay" style="display: none;">
+      <div class="background-div standart-form-div modal-box">
+        <h2 id="modal-titulo">Deseja realmente desistir?</h2>
+        <p id="modal-mensagem">Todo o seu progresso será perdido.</p>
+        <div class="standart-btn-position">
+          <a href="#" id="modal-cancelar" class="standart-form-buttons form-items-gray hover-border">Não</a>
+          <a href="../perfil.html" id="modal-confirmar"
+            class="standart-form-buttons form-items-orange hover-background">Sim</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <script src="../../js/tabuleiro.js"></script>
-  <script src="/code-match/js/classico.js"></script>
+  <script src="../../js/classico.js"></script>
+  <script src="../../js/jogo.js"></script>
 </body>
+
 </html>

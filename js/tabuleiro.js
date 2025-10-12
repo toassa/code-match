@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Seleciona elementos da interface
   const tabuleiro = document.querySelector(".tabuleiro");
   const infoModo = document.getElementById("modoTitulo");
   const infoTabuleiro = document.getElementById("infoTabuleiro");
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
   tabuleiro.style.gridTemplateColumns = `repeat(${tamanho}, 1fr)`;
   tabuleiro.style.gridTemplateRows = `repeat(${tamanho}, 1fr)`;
 
-  // Ajusta espaçamento e tamanho do tabuleiro conforme o tamanho escolhido
   switch (tamanho) {
     case 2:
       tabuleiro.style.gridGap = "20px";
@@ -65,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const carta = document.createElement("div");
     carta.classList.add("carta");
 
-    //exemplo de estrutura para virar uma carta
     carta.innerHTML = `
       <div class="carta-inner">
         <div class="carta-front"></div>
@@ -76,5 +73,5 @@ document.addEventListener("DOMContentLoaded", () => {
     tabuleiro.appendChild(carta);
   }
 
-  console.log(`✅ Tabuleiro ${tamanho}x${tamanho} criado no modo "${modo}"`);
+  console.log(`Tabuleiro ${tamanho}x${tamanho} criado no modo "${modo}"`);
 });
