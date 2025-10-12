@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../css/globals.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/config.css">
-    <link rel="stylesheet" href="../css/config_temporario.css">
     <link rel="stylesheet" href="../css/partida.css">
     <link rel="icon" type="image/png" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,26 +41,7 @@
                     <!-- <a href="index.html" class="standart-form-buttons form-items-gray hover-border">Sair</a> -->
                     <button type="submit" class="standart-form-buttons form-items-gray hover-background">Jogar</button>
                   </div>
-                </form>
-                
-                <script>
-                  document.getElementById("form-jogo").addEventListener("submit", function (e) {
-                    e.preventDefault();
-                    window.location.href = this["game-mode"].value;
-                  });
-                </script>
-                
-
-                <!-- <select class="select-game" name="game-mode">
-                    <option selected hidden>Modo de jogo</option>
-                    <option value="classico">Clássico</option>
-                    <option value="contra-tempo">Contra o tempo</option>
-                </select>
-
-                <div class="standart-btn-position">
-                    <a href="index.html" class="standart-form-buttons form-items-gray hover-border">Sair</a>
-                    <a href="" class="standart-form-buttons form-items-orange hover-background">Jogar</a>
-                </div> -->
+            </form>
         </div>
 
         <div class="partida-buttons buttons-absolute">
@@ -79,5 +59,6 @@
         <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
 
     </section>
+    <script src="../js/config.js"></script>
 </body>
 </html> 

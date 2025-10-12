@@ -58,17 +58,40 @@
 }
 
 .tabuleiro {
+  width: 650px;  /* aumenta a largura total do tabuleiro */
+  height: 650px; /* aumenta a altura total do tabuleiro */
+  margin: 0px auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   gap: 10px;
 }
+
 
 .carta {
   background-color: var(--dark-green-blue);
   border: 2px solid var(--green-blue);
   border-radius: 10px;
   cursor: pointer;
+
+  /* imagem de fundo */
+  background-image: url('../img/carta_tras.png'); /* caminho da sua imagem */
+  background-size: cover;       /* preenche toda a carta */
+  background-position: center;  /* centraliza a imagem */
+  background-repeat: no-repeat;
+
+  /* tamanho responsivo */
+  width: 100%;
+  padding-top: 100%; /* mantém quadrado perfeito */
+  position: relative;
 }
+
+.carta-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 
 .size-6{
   width: var(--card-size);
