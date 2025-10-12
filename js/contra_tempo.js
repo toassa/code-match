@@ -13,11 +13,22 @@
 
     // ========== INICIALIZAR ==========
     document.addEventListener('DOMContentLoaded', () => {
-        const cartas = document.querySelectorAll('.carta');
+        const tabuleiro = document.querySelector('.tabuleiro');
 
-        cartas.forEach(carta => {
-            carta.addEventListener('click', iniciarCronometroNoClick);
-        });
+        if (tabuleiro) {
+            tabuleiro.addEventListener('click', (e) => {
+                const carta = e.target.closest('.carta');
+                if (carta) {
+                    iniciarCronometroNoClick();
+                }
+            });
+        } else {
+            // Fallback: attach aos elementos `.carta` existentes (se houver)
+            const cartas = document.querySelectorAll('.carta');
+            cartas.forEach(carta => {
+                carta.addEventListener('click', iniciarCronometroNoClick);
+            });
+        }
 
         // Inicializar display com tempo inicial
         atualizarRelogio();
@@ -72,7 +83,7 @@
     // ========== GAME OVER ==========
     function gameOver() {
         pararCronometro();
-        alert('⏰ Tempo esgotado! Game Over');
+        alert('Tempo esgotado! Game Over');
 
         // Opcional: redirecionar ou reiniciar
         // window.location.href = '../config.html';
