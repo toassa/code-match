@@ -54,8 +54,8 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 10px 10px 40px 10px;
+    align-items: left;
+    padding: 10px 10px 20px 30px;
 }
 
 .div-estatistica h2{
@@ -131,15 +131,15 @@
     color: var(--orange);
     margin-top: 10px;
     margin-bottom: 5px;
-    text-align: center;
+    text-align: left;   
 }
 
 .personal-info .content {
     font-size: 18px;
     color: var(--black);
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     margin-top: 5px;
-    text-align: center;
+    text-align: left;
 }
 
 .div-tabela {
@@ -243,6 +243,19 @@
 
 .personal-info .title,
 .personal-info .content {
-    text-align: center;
     width: 100%;
+}
+
+#edit-nome, #edit-email, #edit-senha, #edit-telefone {
+    margin-bottom: 5px;
+    width: 80%;
+    height: 25px;
+    padding-left: 10px;
+}
+
+#cancel-button, #save-button {
+    height: 30px;
+    line-height: 0px;
+    margin-top: 10px;  
+    margin: 4px;
 }
