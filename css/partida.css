@@ -73,14 +73,14 @@
   cursor: pointer;
 
   /* imagem de fundo */
-  background-image: url('../img/carta_tras.png'); /* caminho da sua imagem */
-  background-size: cover;       /* preenche toda a carta */
-  background-position: center;  /* centraliza a imagem */
+  background-image: url('../img/carta_tras.png');
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 
   /* tamanho responsivo */
   width: 100%;
-  padding-top: 100%; /* mantém quadrado perfeito */
+  padding-top: 100%;
   position: relative;
 }
 
@@ -90,10 +90,4 @@
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-
-.size-6{
-  width: var(--card-size);
-  height: var(--card-size);
 }

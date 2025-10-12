@@ -27,8 +27,35 @@ document.addEventListener("DOMContentLoaded", () => {
   tabuleiro.style.display = "grid";
   tabuleiro.style.gridTemplateColumns = `repeat(${tamanho}, 1fr)`;
   tabuleiro.style.gridTemplateRows = `repeat(${tamanho}, 1fr)`;
-  tabuleiro.style.gridGap = tamanho === 8 ? "12px" : "10px";
-  tabuleiro.style.maxWidth = tamanho === 8 ? "960px" : "900px";
+
+  // Ajusta espaçamento e tamanho do tabuleiro conforme o tamanho escolhido
+  switch (tamanho) {
+    case 2:
+      tabuleiro.style.gridGap = "20px";
+      tabuleiro.style.width = "400px";
+      tabuleiro.style.height = "400px";
+      break;
+    case 4:
+      tabuleiro.style.gridGap = "15px";
+      tabuleiro.style.width = "500px";
+      tabuleiro.style.height = "500px";
+      break;
+    case 6:
+      tabuleiro.style.gridGap = "12px";
+      tabuleiro.style.width = "600px";
+      tabuleiro.style.height = "600px";
+      break;
+    case 8:
+      tabuleiro.style.gridGap = "11px";
+      tabuleiro.style.width = "650px";
+      tabuleiro.style.height = "650px";
+      break;
+    default:
+      tabuleiro.style.gridGap = "10px";
+      tabuleiro.style.width = "650px";
+      tabuleiro.style.height = "650px";
+  }
+
   tabuleiro.innerHTML = "";
 
   const totalCartas = tamanho * tamanho;
