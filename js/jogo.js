@@ -217,8 +217,10 @@ let tempoInicio = null;
 
 let tempoDecorrido = 0;
 
-const TEMPO_LIMITE = 300;
-let tempoRestante = TEMPO_LIMITE;
+let tamanhoGlobal = parseInt(localStorage.getItem("tamanhoTabuleiro"));
+if (![2, 4, 6, 8].includes(tamanhoGlobal)) tamanhoGlobal = 4;
+
+const TEMPO_LIMITE = calcularTempoPorTamanho(tamanhoGlobal);
 
 function pararCronometro() {
     if (cronometroInterval) {
