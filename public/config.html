@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,11 @@
     <link rel="icon" type="image/jpg" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
     <title>CodeMatch</title>
 </head>
+
 <body class="index-body">
     <section id="config-game">
         <div class="botao-voltar">
@@ -29,18 +32,16 @@
                 <option value="8">8x8</option>
             </select>
 
-            <!-- BOTÃO TEMPORÁRIO-->
             <form id="form-jogo">
                 <select class="select-game" name="game-mode" required>
-                  <option selected hidden value="">Modo de jogo</option>
-                  <option value="./partida/classico.html">Clássico</option>
-                  <option value="./partida/contra_tempo.html">Contra o tempo</option>
+                    <option selected hidden value="">Modo de jogo</option>
+                    <option value="./jogo.html?modo=classico">Clássico</option>
+                    <option value="./jogo.html?modo=contra_tempo">Contra o tempo</option>
                 </select>
 
                 <div class="standart-btn-position">
-                    <!-- <a href="index.html" class="standart-form-buttons form-items-gray hover-border">Sair</a> -->
                     <button type="submit" class="standart-form-buttons form-items-gray hover-background">Jogar</button>
-                  </div>
+                </div>
             </form>
         </div>
 
@@ -61,4 +62,5 @@
     </section>
     <script src="../js/config.js"></script>
 </body>
-</html> 
+
+</html>

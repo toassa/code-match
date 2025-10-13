@@ -65,6 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (infoJogadas) infoJogadas.textContent = `Número de jogadas: ${jogadas}`;
   };
 
+  configurarDisplayInicial(); 
+    
+    tabuleiro.addEventListener('click', (e) => {
+        const carta = e.target.closest('.carta');
+        if (carta) {
+            iniciarCronometroNoClick();
+        }
+    });
+
   const handleClick = (carta) => {
     if (bloqueio || carta.virada || carta.encontrada) return;
 
@@ -177,3 +186,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log(`Tabuleiro ${tamanho}x${tamanho} carregado com ${totalCartas} cartas.`);
 });
+
+function configurarDisplayInicial() {
+    if (modoDeJogo === 'contra_tempo') {
+        modoTitulo.textContent = 'Contra o Tempo';
+        relogioRegressivo.style.display = 'block';
+        
+        const minutos = Math.floor(TEMPO_LIMITE / 60);
+        const segundos = TEMPO_LIMITE % 60;
+        infoTempoRegresivo.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        
+    } else {
+        modoTitulo.textContent = 'Clássico';
+        relogioRegressivo.style.display = 'none';
+    }
+}
+
+//LOGICA E FUNCOES DE TEMPO
+const urlParams = new URLSearchParams(window.location.search);
+const modoDeJogo = urlParams.get('modo');
+
+const modoTitulo = document.getElementById('modoTitulo');
+const infoTempoClassico = document.getElementById('infoTempoClassico');
+const relogioRegressivo = document.getElementById('relogioRegressivo');
+const infoTempoRegresivo = document.getElementById('infoTempoRegresivo');
+
+let cronometroInterval = null;
+let primeiroClick = true;
+let tempoInicio = null;
+
+let tempoDecorrido = 0;
+
+const TEMPO_LIMITE = 300;
+let tempoRestante = TEMPO_LIMITE;
+
+function pararCronometro() {
+    if (cronometroInterval) {
+        clearInterval(cronometroInterval);
+    }
+}
+
+function iniciarCronometroNoClick() {
+    if (primeiroClick) {
+        primeiroClick = false;
+        tempoInicio = Date.now();
+        
+        if (modoDeJogo === 'contra_tempo') {
+            iniciarCronometroRegressivo();
+            iniciarCronometroProgressivo();
+        } else {
+            iniciarCronometroProgressivo();
+        }
+    }
+}
+
+function iniciarCronometroProgressivo() {
+    cronometroInterval = setInterval(() => {
+        tempoDecorrido = Math.floor((Date.now() - tempoInicio) / 1000);
+        const minutos = Math.floor(tempoDecorrido / 60);
+        const segundos = tempoDecorrido % 60;
+        const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        
+        if (infoTempoClassico) {
+            infoTempoClassico.textContent = `Tempo de partida: ${display}`;
+        }
+    }, 1000);
+}
+
+function iniciarCronometroRegressivo() {
+    tempoRestante = TEMPO_LIMITE;
+    cronometroInterval = setInterval(() => {
+        tempoRestante--;
+        
+        const minutos = Math.floor(tempoRestante / 60);
+        const segundos = tempoRestante % 60;
+        const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        
+        if (infoTempoRegresivo) {
+            infoTempoRegresivo.textContent = display;
+        }
+
+        if (tempoRestante <= 0) {
+            pararCronometro();
+        }
+    }, 1000);
+}

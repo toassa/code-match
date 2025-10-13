@@ -12,10 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    //Salva o tamanho no localStorage
     localStorage.setItem("tamanhoTabuleiro", tamanho);
 
-    //Redireciona para o modo escolhido
     window.location.href = modo;
   });
 });
