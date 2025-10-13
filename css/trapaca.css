@@ -1,0 +1,51 @@
+.botoes-trapaca {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.botoes-trapaca a {
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+}
+
+
+.trapaca-revelada {
+  transition: transform 0.3s ease;
+}
+
+
+.trapaca-revelada::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid rgba(255, 107, 107, 0.6);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: pulsar 2s infinite;
+}
+
+@keyframes pulsar {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .botoes-trapaca {
+    flex-direction: column;
+  }
+  
+  .botoes-trapaca a {
+    width: 100%;
+  }
+}

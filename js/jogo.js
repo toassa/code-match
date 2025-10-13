@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     virar() {
       if (this.encontrada || this.virada) return;
       this.virada = true;
-      this.elemento.querySelector(".carta-front").style.backgroundImage = `url('../../img/devs/${this.nomeDev}.jpg')`;
+      this.elemento.querySelector(".carta-front").style.backgroundImage = `url('../img/devs/${this.nomeDev}.jpg')`;
       this.elemento.classList.add("virada");
     }
 
@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const devsDuplicados = embaralhar([...devsSelecionados, ...devsSelecionados]);
 
   const cartas = [];
+  window.cartas = cartas;
   tabuleiro.innerHTML = "";
 
   devsDuplicados.forEach((dev, index) => {
@@ -89,22 +90,28 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const verificarPar = () => {
-    if (!primeiraCarta || !segundaCarta) return;
-    bloqueio = true;
+  if (!primeiraCarta || !segundaCarta) return;
+  bloqueio = true;
 
-    if (primeiraCarta.nomeDev === segundaCarta.nomeDev) {
-      primeiraCarta.encontrada = true;
-      segundaCarta.encontrada = true;
-      resetarSelecao();
-      verificarVitoria();
-    } else {
-      setTimeout(() => {
-        primeiraCarta.desvirar();
-        segundaCarta.desvirar();
-        resetarSelecao();
-      }, 1000);
+  if (primeiraCarta.nomeDev === segundaCarta.nomeDev) {
+    primeiraCarta.encontrada = true;
+    segundaCarta.encontrada = true;
+    
+
+    if (typeof registrarParEncontrado === 'function') {
+      registrarParEncontrado(primeiraCarta, segundaCarta);
     }
-  };
+    
+    resetarSelecao();
+    verificarVitoria();
+  } else {
+    setTimeout(() => {
+      primeiraCarta.desvirar();
+      segundaCarta.desvirar();
+      resetarSelecao();
+    }, 1000);
+  }
+};
 
   const modalDesistencia = document.getElementById("desistencia-modal");
   const btnDesistir = document.getElementById("btn-desistir");
@@ -125,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const verificarVitoria = () => {
     const todasEncontradas = cartas.every((c) => c.encontrada);
     if (todasEncontradas) {
-      pararCronometro(); // Parar cronômetro quando vence
+      pararCronometro();
       mostrarModalVitoria();
     }
   };
@@ -197,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function mostrarModalDerrota() {
-    // Buscar apenas o número de jogadas
     const infoJogadasEl = document.getElementById('infoJogadas');
     const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
     const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
@@ -220,7 +226,6 @@ function mostrarModalDerrota() {
     `;
     document.body.appendChild(modal);
 
-    // Event listeners similares ao modal de vitória
     const btnSim = modal.querySelector('#btn-tentar-novamente');
     const btnNao = modal.querySelector('a[href="perfil.html"]');
 
@@ -288,7 +293,7 @@ let tempoRestante = TEMPO_LIMITE;
 function pararCronometro() {
     if (cronometroInterval) {
         clearInterval(cronometroInterval);
-        cronometroInterval = null; // Limpar referência
+        cronometroInterval = null;
     }
 }
 
