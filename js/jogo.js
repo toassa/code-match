@@ -197,15 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function mostrarModalDerrota() {
-    const cartasElements = document.querySelectorAll('.carta');
-    const todasCartas = Array.from(cartasElements);
-    const cartasEncontradas = todasCartas.filter(carta => carta.classList.contains('encontrada') || 
-                                                           carta.style.opacity === '0.5' ||
-                                                           carta.dataset.encontrada === 'true');
-    
-    const paresEncontrados = Math.floor(cartasEncontradas.length / 2);
-    const totalPares = Math.floor(todasCartas.length / 2);
-    
+    // Buscar apenas o número de jogadas
     const infoJogadasEl = document.getElementById('infoJogadas');
     const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
     const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
@@ -217,7 +209,7 @@ function mostrarModalDerrota() {
           <div class="background-div standart-form-div ">
               <h2>Que pena!</h2>
               <p>O tempo esgotou antes de você encontrar todos os pares.</p>
-              <p>Você encontrou <strong>${paresEncontrados}</strong> de <strong>${totalPares}</strong> pares em <strong>${jogadas}</strong> jogadas!</p>
+              <p>Você fez <strong>${jogadas}</strong> jogadas!</p>
               <p>Deseja tentar novamente?</p>
               <div class="standart-btn-position">
                   <a href="perfil.html" class="standart-form-buttons form-items-gray hover-border">Não</a>
