@@ -279,7 +279,7 @@ function calcularTempoPorTamanho(tamanho) {
     2: 15,
     4: 45,
     6: 120,
-    8: 180
+    8: 300
   };
   return tempo[tamanho] || 60;
 }
@@ -304,6 +304,7 @@ function iniciarCronometroNoClick() {
         
         if (modoDeJogo === 'contra_tempo') {
             iniciarCronometroRegressivo();
+            iniciarCronometroProgressivo();
         } else {
             iniciarCronometroProgressivo();
         }
