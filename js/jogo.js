@@ -139,16 +139,16 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>Você encontrou todos os pares em <strong>${jogadas}</strong> jogadas!</p>
               <p>Deseja jogar outra partida?</p>
               <div class="standart-btn-position">
-                  <a href="../perfil.html" class="standart-form-buttons form-items-orange hover-background">Não</a>
-                  <a href="../config.html" class="standart-form-buttons form-items-orange hover-background">Sim</a>
+                  <a href="perfil.html" class="standart-form-buttons form-items-orange hover-background">Não</a>
+                  <a href="config.html" class="standart-form-buttons form-items-orange hover-background">Sim</a>
                 </div>
           </div>
       </div>
     `;
     document.body.appendChild(modal);
-    
-    const btnSim = modal.querySelector('a[href="../config.html"]');
-    const btnNao = modal.querySelector('a[href="../perfil.html"]');
+
+    const btnSim = modal.querySelector('a[href="config.html"]');
+    const btnNao = modal.querySelector('a[href="perfil.html"]');
 
     if (btnSim) {
       btnSim.addEventListener("click", () => {
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnNao) {
       btnNao.addEventListener("click", () => {
         modal.remove();
-        window.location.href = "../perfil.html";
+        window.location.href = "perfil.html";
       });
     }
   };
@@ -220,7 +220,7 @@ function mostrarModalDerrota() {
               <p>Jogadas realizadas: <strong>${jogadas}</strong></p>
               <p>Deseja tentar novamente?</p>
               <div class="standart-btn-position">
-                  <a href="../config.html" id="btn-voltar-menu" class="standart-form-buttons form-items-gray hover-border">Voltar ao Menu</a>
+                  <a href="config.html" id="btn-voltar-menu" class="standart-form-buttons form-items-gray hover-border">Voltar ao Menu</a>
                   <a href="#" id="btn-tentar-novamente" class="standart-form-buttons form-items-orange hover-background">Tentar Novamente</a>
                 </div>
           </div>
@@ -242,7 +242,7 @@ function mostrarModalDerrota() {
     if (btnVoltarMenu) {
       btnVoltarMenu.addEventListener("click", () => {
         modal.remove();
-        window.location.href = "../config.html";
+        window.location.href = "config.html";
       });
     }
 }
