@@ -146,8 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
     document.body.appendChild(modal);
-
-    // Corrigir seletores para elementos que realmente existem
+    
     const btnSim = modal.querySelector('a[href="../config.html"]');
     const btnNao = modal.querySelector('a[href="../perfil.html"]');
 
@@ -162,49 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
       btnNao.addEventListener("click", () => {
         modal.remove();
         window.location.href = "../perfil.html";
-      });
-    }
-  };
-
-  const mostrarModalDerrota = () => {
-    const paresEncontrados = cartas.filter(c => c.encontrada).length / 2;
-    const totalPares = cartas.length / 2;
-    
-    const modal = document.createElement("div");
-    modal.classList.add("modal-derrota");
-    modal.innerHTML = `
-      <div class="overlay">
-          <div class="background-div standart-form-div ">
-              <h2>Tempo Esgotado!</h2>
-              <p>Você não conseguiu encontrar todos os pares a tempo.</p>
-              <p>Pares encontrados: <strong>${paresEncontrados}/${totalPares}</strong></p>
-              <p>Jogadas realizadas: <strong>${jogadas}</strong></p>
-              <p>Deseja tentar novamente?</p>
-              <div class="standart-btn-position">
-                  <a href="../config.html" id="btn-voltar-menu" class="standart-form-buttons form-items-gray hover-border">Voltar ao Menu</a>
-                  <a href="#" id="btn-tentar-novamente" class="standart-form-buttons form-items-orange hover-background">Tentar Novamente</a>
-                </div>
-          </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-
-    // Event listeners com IDs específicos
-    const btnTentarNovamente = modal.querySelector('#btn-tentar-novamente');
-    const btnVoltarMenu = modal.querySelector('#btn-voltar-menu');
-
-    if (btnTentarNovamente) {
-      btnTentarNovamente.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.remove();
-        location.reload();
-      });
-    }
-
-    if (btnVoltarMenu) {
-      btnVoltarMenu.addEventListener("click", () => {
-        modal.remove();
-        window.location.href = "../config.html";
       });
     }
   };
@@ -239,6 +195,58 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(`Tabuleiro ${tamanho}x${tamanho} carregado com ${totalCartas} cartas.`);
 });
 
+function mostrarModalDerrota() {
+    const cartasElements = document.querySelectorAll('.carta');
+    const todasCartas = Array.from(cartasElements);
+    const cartasEncontradas = todasCartas.filter(carta => carta.classList.contains('encontrada') || 
+                                                           carta.style.opacity === '0.5' ||
+                                                           carta.dataset.encontrada === 'true');
+    
+    const paresEncontrados = Math.floor(cartasEncontradas.length / 2);
+    const totalPares = Math.floor(todasCartas.length / 2);
+    
+    const infoJogadasEl = document.getElementById('infoJogadas');
+    const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
+    const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
+    
+    const modal = document.createElement("div");
+    modal.classList.add("modal-derrota");
+    modal.innerHTML = `
+      <div class="overlay">
+          <div class="background-div standart-form-div ">
+              <h2>Tempo Esgotado!</h2>
+              <p>Você não conseguiu encontrar todos os pares a tempo.</p>
+              <p>Pares encontrados: <strong>${paresEncontrados}/${totalPares}</strong></p>
+              <p>Jogadas realizadas: <strong>${jogadas}</strong></p>
+              <p>Deseja tentar novamente?</p>
+              <div class="standart-btn-position">
+                  <a href="../config.html" id="btn-voltar-menu" class="standart-form-buttons form-items-gray hover-border">Voltar ao Menu</a>
+                  <a href="#" id="btn-tentar-novamente" class="standart-form-buttons form-items-orange hover-background">Tentar Novamente</a>
+                </div>
+          </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const btnTentarNovamente = modal.querySelector('#btn-tentar-novamente');
+    const btnVoltarMenu = modal.querySelector('#btn-voltar-menu');
+
+    if (btnTentarNovamente) {
+      btnTentarNovamente.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.remove();
+        location.reload();
+      });
+    }
+
+    if (btnVoltarMenu) {
+      btnVoltarMenu.addEventListener("click", () => {
+        modal.remove();
+        window.location.href = "../config.html";
+      });
+    }
+}
+
 function configurarDisplayInicial() {
     if (modoDeJogo === 'contra_tempo') {
         modoTitulo.textContent = 'Contra o Tempo';
@@ -254,7 +262,6 @@ function configurarDisplayInicial() {
     }
 }
 
-//LOGICA E FUNCOES DE TEMPO
 const urlParams = new URLSearchParams(window.location.search);
 const modoDeJogo = urlParams.get('modo');
 
@@ -269,10 +276,21 @@ let tempoInicio = null;
 
 let tempoDecorrido = 0;
 
+function calcularTempoPorTamanho(tamanho) {
+  const tempo = {
+    2: 15,
+    4: 45,
+    6: 120,
+    8: 180
+  };
+  return tempo[tamanho] || 60;
+}
+
 let tamanhoGlobal = parseInt(localStorage.getItem("tamanhoTabuleiro"));
 if (![2, 4, 6, 8].includes(tamanhoGlobal)) tamanhoGlobal = 4;
 
 const TEMPO_LIMITE = calcularTempoPorTamanho(tamanhoGlobal);
+let tempoRestante = TEMPO_LIMITE;
 
 function pararCronometro() {
     if (cronometroInterval) {
@@ -307,32 +325,24 @@ function iniciarCronometroProgressivo() {
     }, 1000);
 }
 
-function calcularTempoPorTamanho(tamanho) {
-  const tempo = {
-    2: 15,
-    4: 45,
-    6: 120,
-    8: 180
-  };
-  return tempo[tamanho] || 60;
-}
-
 function iniciarCronometroRegressivo() {
     tempoRestante = TEMPO_LIMITE;
     cronometroInterval = setInterval(() => {
+        if (tempoRestante <= 0) {
+            pararCronometro();
+            mostrarModalDerrota();
+            return;
+        }
+        
         tempoRestante--;
         
-        const minutos = Math.floor(tempoRestante / 60);
-        const segundos = tempoRestante % 60;
+        const tempoParaDisplay = Math.max(0, tempoRestante);
+        const minutos = Math.floor(tempoParaDisplay / 60);
+        const segundos = tempoParaDisplay % 60;
         const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
         
         if (infoTempoRegresivo) {
             infoTempoRegresivo.textContent = display;
-        }
-
-        if (tempoRestante <= 0) {
-            pararCronometro();
-            mostrarModalDerrota();
         }
     }, 1000);
 }
