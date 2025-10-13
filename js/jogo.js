@@ -147,14 +147,66 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.body.appendChild(modal);
 
-    document.getElementById("jogarNovamente").addEventListener("click", () => {
-      modal.remove();
-      location.reload();
-    });
+    // Corrigir seletores para elementos que realmente existem
+    const btnSim = modal.querySelector('a[href="../config.html"]');
+    const btnNao = modal.querySelector('a[href="../perfil.html"]');
 
-    document.getElementById("voltarMenu").addEventListener("click", () => {
-      window.location.href = "../config.html";
-    });
+    if (btnSim) {
+      btnSim.addEventListener("click", () => {
+        modal.remove();
+        location.reload();
+      });
+    }
+
+    if (btnNao) {
+      btnNao.addEventListener("click", () => {
+        modal.remove();
+        window.location.href = "../perfil.html";
+      });
+    }
+  };
+
+  const mostrarModalDerrota = () => {
+    const paresEncontrados = cartas.filter(c => c.encontrada).length / 2;
+    const totalPares = cartas.length / 2;
+    
+    const modal = document.createElement("div");
+    modal.classList.add("modal-derrota");
+    modal.innerHTML = `
+      <div class="overlay">
+          <div class="background-div standart-form-div ">
+              <h2>Tempo Esgotado!</h2>
+              <p>Você não conseguiu encontrar todos os pares a tempo.</p>
+              <p>Pares encontrados: <strong>${paresEncontrados}/${totalPares}</strong></p>
+              <p>Jogadas realizadas: <strong>${jogadas}</strong></p>
+              <p>Deseja tentar novamente?</p>
+              <div class="standart-btn-position">
+                  <a href="../config.html" id="btn-voltar-menu" class="standart-form-buttons form-items-gray hover-border">Voltar ao Menu</a>
+                  <a href="#" id="btn-tentar-novamente" class="standart-form-buttons form-items-orange hover-background">Tentar Novamente</a>
+                </div>
+          </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Event listeners com IDs específicos
+    const btnTentarNovamente = modal.querySelector('#btn-tentar-novamente');
+    const btnVoltarMenu = modal.querySelector('#btn-voltar-menu');
+
+    if (btnTentarNovamente) {
+      btnTentarNovamente.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.remove();
+        location.reload();
+      });
+    }
+
+    if (btnVoltarMenu) {
+      btnVoltarMenu.addEventListener("click", () => {
+        modal.remove();
+        window.location.href = "../config.html";
+      });
+    }
   };
 
   const resetarSelecao = () => {
@@ -280,6 +332,7 @@ function iniciarCronometroRegressivo() {
 
         if (tempoRestante <= 0) {
             pararCronometro();
+            mostrarModalDerrota();
         }
     }, 1000);
 }
