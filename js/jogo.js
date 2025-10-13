@@ -253,6 +253,16 @@ function iniciarCronometroProgressivo() {
     }, 1000);
 }
 
+function calcularTempoPorTamanho(tamanho) {
+  const tempo = {
+    2: 15,
+    4: 45,
+    6: 120,
+    8: 180
+  };
+  return tempo[tamanho] || 60;
+}
+
 function iniciarCronometroRegressivo() {
     tempoRestante = TEMPO_LIMITE;
     cronometroInterval = setInterval(() => {
