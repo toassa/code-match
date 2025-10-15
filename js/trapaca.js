@@ -59,9 +59,9 @@ class ModoTrapaca {
   marcarComoEncontrada(cartaElemento) {
     // mantém registro dos elementos permanentemente encontrados
     this.cartasEncontradas.add(cartaElemento);
-    // garante que não fique marcada como reveal temporário
+
     cartaElemento.classList.remove('trapaca-revelada');
-    // mantém a classe virada (visual de encontrada)
+    
     cartaElemento.classList.add('virada');
   }
 
@@ -83,6 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnMostrarTodas.addEventListener('click', (e) => {
       e.preventDefault();
       modoTrapaca.mostrarTodasCartas();
+      
+      
+      btnMostrarTodas.style.display = 'none';
+      if (btnVoltarNormal) {
+        btnVoltarNormal.style.display = 'inline-block';
+      }
     });
   }
 
@@ -90,6 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnVoltarNormal.addEventListener('click', (e) => {
       e.preventDefault();
       modoTrapaca.voltarExibicaoNormal();
+      
+
+      btnVoltarNormal.style.display = 'none';
+      if (btnMostrarTodas) {
+        btnMostrarTodas.style.display = 'inline-block';
+      }
     });
   }
 });

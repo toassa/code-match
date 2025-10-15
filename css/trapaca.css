@@ -49,3 +49,6 @@
     width: 100%;
   }
 }
+#btn-voltar-normal {
+  display: none;
+}
