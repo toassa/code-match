@@ -66,14 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (infoJogadas) infoJogadas.textContent = `Número de jogadas: ${jogadas}`;
   };
 
-  configurarDisplayInicial(); 
-    
-    tabuleiro.addEventListener('click', (e) => {
-        const carta = e.target.closest('.carta');
-        if (carta) {
-            iniciarCronometroNoClick();
-        }
-    });
+  configurarDisplayInicial();
+
+  tabuleiro.addEventListener('click', (e) => {
+    const carta = e.target.closest('.carta');
+    if (carta) {
+      iniciarCronometroNoClick();
+    }
+  });
 
   const handleClick = (carta) => {
     if (bloqueio || carta.virada || carta.encontrada) return;
@@ -90,34 +90,35 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const verificarPar = () => {
-  if (!primeiraCarta || !segundaCarta) return;
-  bloqueio = true;
+    if (!primeiraCarta || !segundaCarta) return;
+    bloqueio = true;
 
-  if (primeiraCarta.nomeDev === segundaCarta.nomeDev) {
-    primeiraCarta.encontrada = true;
-    segundaCarta.encontrada = true;
-    
+    if (primeiraCarta.nomeDev === segundaCarta.nomeDev) {
+      primeiraCarta.encontrada = true;
+      segundaCarta.encontrada = true;
 
-    if (typeof registrarParEncontrado === 'function') {
-      registrarParEncontrado(primeiraCarta, segundaCarta);
-    }
-    
-    resetarSelecao();
-    verificarVitoria();
-  } else {
-    setTimeout(() => {
-      primeiraCarta.desvirar();
-      segundaCarta.desvirar();
+
+      if (typeof registrarParEncontrado === 'function') {
+        registrarParEncontrado(primeiraCarta, segundaCarta);
+      }
+
       resetarSelecao();
-    }, 1000);
-  }
-};
+      verificarVitoria();
+    } else {
+      setTimeout(() => {
+        primeiraCarta.desvirar();
+        segundaCarta.desvirar();
+        resetarSelecao();
+      }, 1000);
+    }
+  };
 
   const modalDesistencia = document.getElementById("desistencia-modal");
   const btnDesistir = document.getElementById("btn-desistir");
+  const btnVoltarDesistir = document.getElementById("btn-voltar-desistir");
   const modalCancelar = document.getElementById("modal-cancelar");
 
-  const mostrarModalDesistencia = () => {
+  const mostrarModalDesistencia = (destino = "perfil.html") => {
     bloqueio = true;
 
     if (window.CMContraTempo && typeof window.CMContraTempo.pararCronometro === 'function') {
@@ -126,8 +127,14 @@ document.addEventListener("DOMContentLoaded", () => {
       pararCronometro();
     }
 
+    const modalDesistencia = document.getElementById("desistencia-modal");
+    const confirmarBtn = document.getElementById("modal-confirmar");
+
+    confirmarBtn.setAttribute("href", destino);
+
     modalDesistencia.style.display = 'flex';
   };
+
 
   const verificarVitoria = () => {
     const todasEncontradas = cartas.every((c) => c.encontrada);
@@ -181,7 +188,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnDesistir) {
     btnDesistir.addEventListener('click', (e) => {
       e.preventDefault();
-      mostrarModalDesistencia();
+      mostrarModalDesistencia("perfil.html");
+    });
+  }
+
+  if (btnVoltarDesistir) {
+    btnVoltarDesistir.addEventListener('click', (e) => {
+      e.preventDefault();
+      mostrarModalDesistencia("config.html");
     });
   }
 
@@ -204,13 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function mostrarModalDerrota() {
-    const infoJogadasEl = document.getElementById('infoJogadas');
-    const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
-    const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
-    
-    const modal = document.createElement("div");
-    modal.classList.add("modal-derrota");
-    modal.innerHTML = `
+  const infoJogadasEl = document.getElementById('infoJogadas');
+  const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
+  const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
+
+  const modal = document.createElement("div");
+  modal.classList.add("modal-derrota");
+  modal.innerHTML = `
       <div class="overlay">
           <div class="background-div standart-form-div ">
               <h2>Que pena!</h2>
@@ -224,40 +238,40 @@ function mostrarModalDerrota() {
           </div>
       </div>
     `;
-    document.body.appendChild(modal);
+  document.body.appendChild(modal);
 
-    const btnSim = modal.querySelector('#btn-tentar-novamente');
-    const btnNao = modal.querySelector('a[href="perfil.html"]');
+  const btnSim = modal.querySelector('#btn-tentar-novamente');
+  const btnNao = modal.querySelector('a[href="perfil.html"]');
 
-    if (btnSim) {
-      btnSim.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.remove();
-        location.reload();
-      });
-    }
+  if (btnSim) {
+    btnSim.addEventListener("click", (e) => {
+      e.preventDefault();
+      modal.remove();
+      location.reload();
+    });
+  }
 
-    if (btnNao) {
-      btnNao.addEventListener("click", () => {
-        modal.remove();
-        window.location.href = "perfil.html";
-      });
-    }
+  if (btnNao) {
+    btnNao.addEventListener("click", () => {
+      modal.remove();
+      window.location.href = "perfil.html";
+    });
+  }
 }
 
 function configurarDisplayInicial() {
-    if (modoDeJogo === 'contra_tempo') {
-        modoTitulo.textContent = 'Contra o Tempo';
-        relogioRegressivo.style.display = 'block';
-        
-        const minutos = Math.floor(TEMPO_LIMITE / 60);
-        const segundos = TEMPO_LIMITE % 60;
-        infoTempoRegresivo.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-        
-    } else {
-        modoTitulo.textContent = 'Clássico';
-        relogioRegressivo.style.display = 'none';
-    }
+  if (modoDeJogo === 'contra_tempo') {
+    modoTitulo.textContent = 'Contra o Tempo';
+    relogioRegressivo.style.display = 'block';
+
+    const minutos = Math.floor(TEMPO_LIMITE / 60);
+    const segundos = TEMPO_LIMITE % 60;
+    infoTempoRegresivo.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+  } else {
+    modoTitulo.textContent = 'Clássico';
+    relogioRegressivo.style.display = 'none';
+  }
 }
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -303,30 +317,30 @@ function pararCronometro() {
 }
 
 function iniciarCronometroNoClick() {
-    if (primeiroClick) {
-        primeiroClick = false;
-        tempoInicio = Date.now();
-        
-        if (modoDeJogo === 'contra_tempo') {
-            iniciarCronometroRegressivo();
-            iniciarCronometroProgressivo();
-        } else {
-            iniciarCronometroProgressivo();
-        }
+  if (primeiroClick) {
+    primeiroClick = false;
+    tempoInicio = Date.now();
+
+    if (modoDeJogo === 'contra_tempo') {
+      iniciarCronometroRegressivo();
+      iniciarCronometroProgressivo();
+    } else {
+      iniciarCronometroProgressivo();
     }
+  }
 }
 
 function iniciarCronometroProgressivo() {
   if (progressivoInterval) return;
   progressivoInterval = setInterval(() => {
     tempoDecorrido = Math.floor((Date.now() - tempoInicio) / 1000);
-        const minutos = Math.floor(tempoDecorrido / 60);
-        const segundos = tempoDecorrido % 60;
-        const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-        
-        if (infoTempoClassico) {
-            infoTempoClassico.textContent = `Tempo de partida: ${display}`;
-        }
+    const minutos = Math.floor(tempoDecorrido / 60);
+    const segundos = tempoDecorrido % 60;
+    const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+    if (infoTempoClassico) {
+      infoTempoClassico.textContent = `Tempo de partida: ${display}`;
+    }
   }, 1000);
 }
 
