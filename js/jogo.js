@@ -268,7 +268,8 @@ const infoTempoClassico = document.getElementById('infoTempoClassico');
 const relogioRegressivo = document.getElementById('relogioRegressivo');
 const infoTempoRegresivo = document.getElementById('infoTempoRegresivo');
 
-let cronometroInterval = null;
+let progressivoInterval = null;
+let regressivoInterval = null;
 let primeiroClick = true;
 let tempoInicio = null;
 
@@ -291,10 +292,14 @@ const TEMPO_LIMITE = calcularTempoPorTamanho(tamanhoGlobal);
 let tempoRestante = TEMPO_LIMITE;
 
 function pararCronometro() {
-    if (cronometroInterval) {
-        clearInterval(cronometroInterval);
-        cronometroInterval = null;
-    }
+  if (progressivoInterval) {
+    clearInterval(progressivoInterval);
+    progressivoInterval = null;
+  }
+  if (regressivoInterval) {
+    clearInterval(regressivoInterval);
+    regressivoInterval = null;
+  }
 }
 
 function iniciarCronometroNoClick() {
@@ -312,8 +317,9 @@ function iniciarCronometroNoClick() {
 }
 
 function iniciarCronometroProgressivo() {
-    cronometroInterval = setInterval(() => {
-        tempoDecorrido = Math.floor((Date.now() - tempoInicio) / 1000);
+  if (progressivoInterval) return;
+  progressivoInterval = setInterval(() => {
+    tempoDecorrido = Math.floor((Date.now() - tempoInicio) / 1000);
         const minutos = Math.floor(tempoDecorrido / 60);
         const segundos = tempoDecorrido % 60;
         const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
@@ -321,27 +327,28 @@ function iniciarCronometroProgressivo() {
         if (infoTempoClassico) {
             infoTempoClassico.textContent = `Tempo de partida: ${display}`;
         }
-    }, 1000);
+  }, 1000);
 }
 
 function iniciarCronometroRegressivo() {
-    tempoRestante = TEMPO_LIMITE;
-    cronometroInterval = setInterval(() => {
-        if (tempoRestante <= 0) {
-            pararCronometro();
-            mostrarModalDerrota();
-            return;
-        }
-        
-        tempoRestante--;
-        
-        const tempoParaDisplay = Math.max(0, tempoRestante);
-        const minutos = Math.floor(tempoParaDisplay / 60);
-        const segundos = tempoParaDisplay % 60;
-        const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-        
-        if (infoTempoRegresivo) {
-            infoTempoRegresivo.textContent = display;
-        }
-    }, 1000);
+  if (regressivoInterval) return;
+  tempoRestante = TEMPO_LIMITE;
+  regressivoInterval = setInterval(() => {
+    if (tempoRestante <= 0) {
+      pararCronometro();
+      mostrarModalDerrota();
+      return;
+    }
+
+    tempoRestante--;
+
+    const tempoParaDisplay = Math.max(0, tempoRestante);
+    const minutos = Math.floor(tempoParaDisplay / 60);
+    const segundos = tempoParaDisplay % 60;
+    const display = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+
+    if (infoTempoRegresivo) {
+      infoTempoRegresivo.textContent = display;
+    }
+  }, 1000);
 }
