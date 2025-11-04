@@ -1,0 +1,49 @@
+Instruções para criação do banco de dados e tabelas – Jogo da Memória
+
+Objetivo
+
+O script create_tables.php é responsável por criar automaticamente o banco de dados e as tabelas necessárias para o funcionamento da aplicação web do Jogo da Memória.
+
+Requisitos
+
+Servidor local configurado com XAMPP (ou equivalente)
+
+PHP 8.x ou superior
+
+MySQL ou MariaDB em execução
+
+Organização dos diretórios
+
+code-match/
+└── backend/
+    ├── create_tables.php
+    └── db_config.php
+
+Passos para utilização
+
+Inicie o Apache e o MySQL pelo painel do XAMPP.
+
+Copie a pasta do projeto (code-match) para o diretório:
+
+C:\xampp\htdocs\
+
+
+Abra o navegador e acesse:
+
+http://localhost/code-match/backend/create_tables.php
+
+
+Se a execução for bem-sucedida, você verá mensagens indicando:
+
+Criação (ou confirmação) do banco de dados;
+
+Criação das tabelas Usuarios e Partidas.
+
+
+Observações
+
+As tabelas utilizam o mecanismo InnoDB, que permite o uso de chaves estrangeiras.
+
+Caso já exista um banco chamado code_match_bd, ele será mantido e apenas as tabelas serão criadas se não existirem.
+
+Para reiniciar do zero, basta deletar o banco pelo phpMyAdmin ou modificar o script para usar DROP DATABASE IF EXISTS.
