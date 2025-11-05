@@ -79,7 +79,6 @@ function validarCPF(cpf) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para validar telefone
 function validarTelefone(telefone) {
     const telLimpo = telefone.replace(/[^\d]/g, '');
     
@@ -87,7 +86,6 @@ function validarTelefone(telefone) {
         return { valido: false, mensagem: "Telefone deve ter 10 ou 11 dígitos" };
     }
     
-    // Verifica se todos os dígitos são iguais
     if (/^(\d)\1+$/.test(telLimpo)) {
         return { valido: false, mensagem: "Telefone inválido" };
     }
@@ -95,7 +93,6 @@ function validarTelefone(telefone) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para validar email
 function validarEmail(email) {
     const emailTrim = email.trim();
     
@@ -111,7 +108,6 @@ function validarEmail(email) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para validar usuário
 function validarUsuario(usuario) {
     const usuarioTrim = usuario.trim();
     
@@ -130,7 +126,6 @@ function validarUsuario(usuario) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para validar senha
 function validarSenha(senha) {
     if (senha.length < 6) {
         return { valido: false, mensagem: "Senha deve ter pelo menos 6 caracteres" };
@@ -155,24 +150,20 @@ function validarSenha(senha) {
     return { valido: true, mensagem: "" };
 }
 
-// Função para mostrar erro no campo
 function mostrarErro(input, mensagem) {
     input.classList.add('erro');
     
-    // Remove mensagem de erro anterior, se existir
     const erroAnterior = input.parentElement.querySelector('.mensagem-erro');
     if (erroAnterior) {
         erroAnterior.remove();
     }
     
-    // Cria e adiciona a mensagem de erro
     const divErro = document.createElement('div');
     divErro.className = 'mensagem-erro';
     divErro.textContent = mensagem;
     input.parentElement.appendChild(divErro);
 }
 
-// Função para limpar erro do campo
 function limparErro(input) {
     input.classList.remove('erro');
     const erroAnterior = input.parentElement.querySelector('.mensagem-erro');
@@ -181,7 +172,6 @@ function limparErro(input) {
     }
 }
 
-// Função para aplicar máscara de CPF
 function mascararCPF(input) {
     let valor = input.value.replace(/\D/g, '');
     valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
@@ -190,7 +180,6 @@ function mascararCPF(input) {
     input.value = valor;
 }
 
-// Função para aplicar máscara de telefone
 function mascararTelefone(input) {
     let valor = input.value.replace(/\D/g, '');
     if (valor.length <= 10) {
@@ -203,13 +192,11 @@ function mascararTelefone(input) {
     input.value = valor;
 }
 
-// Função principal de validação do formulário
 function validarFormulario(event) {
     event.preventDefault();
     
     let formularioValido = true;
     
-    // Pega todos os inputs
     const inputs = document.querySelectorAll('.standart-form-items');
     const nome = inputs[0].value;
     const dataNascimento = inputs[1].value;
@@ -219,10 +206,8 @@ function validarFormulario(event) {
     const usuario = inputs[5].value;
     const senha = inputs[6].value;
     
-    // Limpa todos os erros anteriores
     inputs.forEach(input => limparErro(input));
     
-    // Valida cada campo
     const resultados = [
         { input: inputs[0], resultado: validarNome(nome) },
         { input: inputs[1], resultado: validarDataNascimento(dataNascimento) },
@@ -233,7 +218,6 @@ function validarFormulario(event) {
         { input: inputs[6], resultado: validarSenha(senha) }
     ];
     
-    // Mostra erros e verifica se formulário é válido
     resultados.forEach(({ input, resultado }) => {
         if (!resultado.valido) {
             mostrarErro(input, resultado.mensagem);
@@ -241,7 +225,6 @@ function validarFormulario(event) {
         }
     });
     
-    // Se tudo estiver válido, pode enviar para o backend
     if (formularioValido) {
         console.log('Formulário válido! Dados prontos para envio:');
         console.log({
@@ -251,41 +234,36 @@ function validarFormulario(event) {
             telefone,
             email,
             usuario,
-            senha: '***' // Não exibe a senha no console por segurança
+            senha: '***' 
         });
         
         alert('Cadastro validado com sucesso!');
         
-        // Aqui você vai chamar o backen
     } else {
         alert('Por favor, corrija os erros no formulário.');
     }
 }
 
-// Adiciona os event listeners quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     const inputs = document.querySelectorAll('.standart-form-items');
     
-    // Adiciona validação ao submeter o formulário
     if (form) {
         form.addEventListener('submit', validarFormulario);
     }
     
-    // Adiciona máscaras aos campos
-    if (inputs[2]) { // CPF
+    if (inputs[2]) {
         inputs[2].addEventListener('input', function() {
             mascararCPF(this);
         });
     }
     
-    if (inputs[3]) { // Telefone
+    if (inputs[3]) {
         inputs[3].addEventListener('input', function() {
             mascararTelefone(this);
         });
     }
     
-    // Adiciona validação em tempo real ao sair do campo (blur)
     inputs.forEach((input, index) => {
         input.addEventListener('blur', function() {
             const valor = this.value;
