@@ -56,7 +56,7 @@ if (!isset($_SESSION["usuario"])) {
         </div>
 
         <div class="partida-buttons buttons-absolute">
-            <a href="index.php" title="Sair">
+            <a href="../backend/logout.php" title="Sair">
                 <span class="material-symbols-outlined">logout</span>
             </a>
             <a href="ranking.php" title="Ranking Global">

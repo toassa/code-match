@@ -19,15 +19,23 @@
             <form action="../backend/login.php" method="POST" class="standart-form">
                 <div class="input-box input-box-login">
                     <span class="material-symbols-outlined">person</span>
-                    <input type="text" name="usuario" placeholder="Usuário" class="standart-form-items form-items-login form-items-gray" required>
+                    <input type="text" name="usuario" placeholder="Usuário" class="standart-form-items form-items-login form-items-gray" 
+                    value="<?php echo isset($_COOKIE['usuario_salvo']) ? $_COOKIE['usuario_salvo'] : ''; ?>" required>
                 </div>
                 <div class="input-box input-box-login">
                     <span class="material-symbols-outlined">lock</span>
-                    <input type="password" name="senha" placeholder="Senha" class="standart-form-items form-items-login form-items-gray" required>
+                    <input type="password" name="senha" placeholder="Senha" class="standart-form-items form-items-login form-items-gray"
+                    value="<?php echo isset($_COOKIE['senha_salva']) ? $_COOKIE['senha_salva'] : ''; ?>" required>
+                </div>
+                <div class="input-box">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="lembrar"  <?php echo isset($_COOKIE['usuario_salvo']) ? 'checked' : ''; ?> >
+                        <span class="checkmark"></span>
+                        Lembrar-me
+                    </label>
                 </div>
                 <div class="standart-btn-position">
                     <a href="cadastro.php" class="standart-form-buttons form-items-gray hover-border">Cadastre-se</a>
-                    <!-- <a href="config.php" class="standart-form-buttons form-items-orange hover-background">Entrar</a> -->
                     <button type="submit" class="standart-form-buttons form-items-orange hover-background">Entrar</button>
                 </div>
             </form>

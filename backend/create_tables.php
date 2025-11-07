@@ -17,13 +17,16 @@ if ($conn->query($sql) === TRUE) {
 $conn->select_db($dbname);
 
 $sqlUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
-    Usuario VARCHAR(20) PRIMARY KEY,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Usuario VARCHAR(20) UNIQUE NOT NULL,
     Nome_Completo VARCHAR(100) NOT NULL,
     Data_nasc DATE NOT NULL,
     Cpf CHAR(11) UNIQUE NOT NULL,
     Telefone VARCHAR(15),
     Email VARCHAR(100) NOT NULL UNIQUE,
-    Senha VARCHAR(255) NOT NULL
+    Senha VARCHAR(255) NOT NULL,
+    remember_token VARCHAR(255),
+    token_expira_em DATETIME;
 ) ENGINE=InnoDB";
 
 if ($conn->query($sqlUsuarios) === TRUE) {
@@ -34,14 +37,14 @@ if ($conn->query($sqlUsuarios) === TRUE) {
 
 $sqlPartida = "CREATE TABLE IF NOT EXISTS Partidas (
     ID INT AUTO_INCREMENT PRIMARY KEY,
-    Usuario VARCHAR(20),
+    Usuario_ID INT NOT NULL,
     Tabuleiro INT NOT NULL, 
     Modalidade CHAR(14) NOT NULL,
     Tempo_regressivo TIME,
     Duracao_partida TIME NOT NULL,
     Jogadas INT NOT NULL,
     Data_partida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (Usuario) REFERENCES Usuarios(Usuario)
+    FOREIGN KEY (Usuario_ID) REFERENCES Usuarios(ID)
 ) ENGINE=InnoDB";
 
 
