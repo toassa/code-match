@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnVoltarDesistir = document.getElementById("btn-voltar-desistir");
   const modalCancelar = document.getElementById("modal-cancelar");
 
-  const mostrarModalDesistencia = (destino = "perfil.html") => {
+  const mostrarModalDesistencia = (destino = "perfil.php") => {
     bloqueio = true;
 
     if (window.CMContraTempo && typeof window.CMContraTempo.pararCronometro === 'function') {
@@ -154,16 +154,16 @@ document.addEventListener("DOMContentLoaded", () => {
               <p>Você encontrou todos os pares em <strong>${jogadas}</strong> jogadas!</p>
               <p>Deseja jogar outra partida?</p>
               <div class="standart-btn-position">
-                  <a href="perfil.html" class="standart-form-buttons form-items-orange hover-background">Não</a>
-                  <a href="config.html" class="standart-form-buttons form-items-orange hover-background">Sim</a>
+                  <a href="perfil.php" class="standart-form-buttons form-items-orange hover-background">Não</a>
+                  <a href="config.php" class="standart-form-buttons form-items-orange hover-background">Sim</a>
                 </div>
           </div>
       </div>
     `;
     document.body.appendChild(modal);
 
-    const btnSim = modal.querySelector('a[href="config.html"]');
-    const btnNao = modal.querySelector('a[href="perfil.html"]');
+    const btnSim = modal.querySelector('a[href="config.php"]');
+    const btnNao = modal.querySelector('a[href="perfil.php"]');
 
     if (btnSim) {
       btnSim.addEventListener("click", () => {
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnNao) {
       btnNao.addEventListener("click", () => {
         modal.remove();
-        window.location.href = "perfil.html";
+        window.location.href = "perfil.php";
       });
     }
   };
@@ -188,14 +188,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnDesistir) {
     btnDesistir.addEventListener('click', (e) => {
       e.preventDefault();
-      mostrarModalDesistencia("perfil.html");
+      mostrarModalDesistencia("perfil.php");
     });
   }
 
   if (btnVoltarDesistir) {
     btnVoltarDesistir.addEventListener('click', (e) => {
       e.preventDefault();
-      mostrarModalDesistencia("config.html");
+      mostrarModalDesistencia("config.php");
     });
   }
 
@@ -232,7 +232,7 @@ function mostrarModalDerrota() {
               <p>Você fez <strong>${jogadas}</strong> jogadas!</p>
               <p>Deseja tentar novamente?</p>
               <div class="standart-btn-position">
-                  <a href="perfil.html" class="standart-form-buttons form-items-gray hover-border">Não</a>
+                  <a href="perfil.php" class="standart-form-buttons form-items-gray hover-border">Não</a>
                   <a href="#" id="btn-tentar-novamente" class="standart-form-buttons form-items-orange hover-background">Sim</a>
                 </div>
           </div>
@@ -241,7 +241,7 @@ function mostrarModalDerrota() {
   document.body.appendChild(modal);
 
   const btnSim = modal.querySelector('#btn-tentar-novamente');
-  const btnNao = modal.querySelector('a[href="perfil.html"]');
+  const btnNao = modal.querySelector('a[href="perfil.php"]');
 
   if (btnSim) {
     btnSim.addEventListener("click", (e) => {
@@ -254,7 +254,7 @@ function mostrarModalDerrota() {
   if (btnNao) {
     btnNao.addEventListener("click", () => {
       modal.remove();
-      window.location.href = "perfil.html";
+      window.location.href = "perfil.php";
     });
   }
 }

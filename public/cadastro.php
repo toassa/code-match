@@ -54,7 +54,7 @@
     </div>
     <div class="index-logo">
         <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
-        <a href="index.html" id="cadastro-link" class="form-items-green hover-border">Já possui cadastro?</a>
+        <a href="index.php" id="cadastro-link" class="form-items-green hover-border">Já possui cadastro?</a>
     </div>
     
     <script src="../js/validation.js"></script>

@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["usuario"])) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,7 +29,7 @@
 <body class="index-body">
     <section id="config-game">
         <div class="botao-voltar">
-            <a href="./index.html"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+            <a href="./index.php"><span class="material-symbols-outlined">arrow_back_ios</span></a>
         </div>
         <h1>CodeMatch</h1>
         <div class="background-div standart-form-div">
@@ -35,8 +45,8 @@
             <form id="form-jogo">
                 <select class="select-game" name="game-mode" required>
                     <option selected hidden value="">Modo de jogo</option>
-                    <option value="./jogo.html?modo=classico">Clássico</option>
-                    <option value="./jogo.html?modo=contra_tempo">Contra o tempo</option>
+                    <option value="./jogo.php?modo=classico">Clássico</option>
+                    <option value="./jogo.php?modo=contra_tempo">Contra o tempo</option>
                 </select>
 
                 <div class="standart-btn-position">
@@ -46,13 +56,13 @@
         </div>
 
         <div class="partida-buttons buttons-absolute">
-            <a href="index.html" title="Sair">
+            <a href="index.php" title="Sair">
                 <span class="material-symbols-outlined">logout</span>
             </a>
-            <a href="ranking.html" title="Ranking Global">
+            <a href="ranking.php" title="Ranking Global">
                 <span class="material-symbols-outlined">social_leaderboard</span>
             </a>
-            <a href="perfil.html" title="Perfil">
+            <a href="perfil.php" title="Perfil">
                 <span class="material-symbols-outlined">person</span>
             </a>
         </div>

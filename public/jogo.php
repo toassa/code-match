@@ -20,7 +20,7 @@
 
 <body class="index-body">
   <div class="botao-voltar">
-    <a href="./config.html" id="btn-voltar-desistir">
+    <a href="./config.php" id="btn-voltar-desistir">
       <span class="material-symbols-outlined">arrow_back_ios</span>
     </a>
   </div>
@@ -57,11 +57,11 @@
         <span class="material-symbols-outlined">close</span>
       </a>
 
-      <a href="ranking.html" title="Ranking Global">
+      <a href="ranking.php" title="Ranking Global">
         <span class="material-symbols-outlined">social_leaderboard</span>
       </a>
 
-      <a href="perfil.html" title="Perfil">
+      <a href="perfil.php" title="Perfil">
         <span class="material-symbols-outlined">person</span>
       </a>
     </div>
@@ -72,7 +72,7 @@
         <p id="modal-mensagem">Todo o seu progresso será perdido.</p>
         <div class="standart-btn-position">
           <a href="#" id="modal-cancelar" class="standart-form-buttons form-items-gray hover-border">Não</a>
-          <a href="perfil.html" id="modal-confirmar"
+          <a href="perfil.php" id="modal-confirmar"
             class="standart-form-buttons form-items-orange hover-background">Sim</a>
         </div>
       </div>

@@ -216,13 +216,13 @@
     </section>
 
     <div class="partida-buttons buttons-absolute">
-        <a href="index.html" title="Sair">
+        <a href="index.php" title="Sair">
             <span class="material-symbols-outlined">logout</span>
         </a>
-        <a href="perfil.html" title="Perfil">
+        <a href="perfil.php" title="Perfil">
             <span class="material-symbols-outlined">person</span>
         </a>
-        <a href="config.html" title="Jogar agora!">
+        <a href="config.php" title="Jogar agora!">
             <img src="../img/robito_branco.png" alt="">
         </a>
     </div>

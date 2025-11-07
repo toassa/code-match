@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/config.css">
+    <link rel="stylesheet" href="../css/config_temporario.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="icon" type="image/jpg" href="../img/robito.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <title>CodeMatch</title>
+</head>
+
+<body class="perfil-body">
+    <div class="botao-voltar">
+        <a href="javascript:history.back()"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+    </div>
+
+    <section id="perfil-table">
+        <div class="div-pagina">
+            <div class="div-tabela">
+                <h2>HISTORICO PESSOAL</h2>
+                <table class="table-perfil">
+                    <thead>
+                        <tr>
+                            <th class="tr-border-left"></th>
+                            <th>TABULEIRO</th>
+                            <th>MODALIDADE</th>
+                            <th>TEMPO</th>
+                            <th>RESULTADO</th>
+                            <th>DATA/HORA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">1.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">2.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">3.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">4.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">5.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">6.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">7.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">8.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">9.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">10.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">11.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">12.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-vitoria">
+                            <td class="tr-border-left">13.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>VITÓRIA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">14.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                        <tr class="resultado-derrota">
+                            <td class="tr-border-left">15.</td>
+                            <td>8x8</td>
+                            <td>CONTRA O TEMPO</td>
+                            <td>11:00</td>
+                            <td>DERROTA</td>
+                            <td class="tr-border-right">08/09/2025 - 16:54</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="div-info-perfil">
+                <h2>PERFIL</h2>
+                <div class="personal-info">
+                    <div id="view-mode">
+                        <p class="title">USERNAME</p>
+                        <p class="content">TRAINEE</p>
+                        <p class="title">NOME COMPLETO</p>
+                        <p class="content">Antonio Carlos Rosendo da Silva</p>
+                        <p class="title">E-MAIL</p>
+                        <p class="content">exemplo@gmail.com</p>
+                        <a href="#" id="edit-button" class="edit-icon" title="Editar">
+                            <span class="material-symbols-outlined">edit</span>
+                        </a>
+                    </div>
+
+                    <form id="edit-mode" style="display: none;">
+                        <p class="title">USERNAME</p>
+                        <p class="content">TRAINEE</p>
+
+                        <div class="input-box">
+                            <p class="title">NOME COMPLETO</p>
+                            <input type="text" id="edit-nome" class="standart-form-items form-items-gray"
+                                value="Antonio Carlos Rosendo da Silva">
+                        </div>
+
+                        <div class="input-box">
+                            <p class="title">E-MAIL</p>
+                            <input type="email" id="edit-email" class="standart-form-items form-items-gray"
+                                value="exemplo@gmail.com">
+                        </div>
+
+                        <div class="input-box">
+                            <p class="title">SENHA</p>
+                            <input type="password" id="edit-senha" class="standart-form-items form-items-gray"
+                                value="12345678">
+                        </div>
+
+                        <div class="input-box">
+                            <p class="title">TELEFONE</p>
+                            <input type="tel" id="edit-telefone" class="standart-form-items form-items-gray"
+                                value="(11)91234-5678" maxlength="15">
+                        </div>
+
+                        <p class="title">DATA DE NASCIMENTO</p>
+                        <p class="content">01/01/2000</p>
+
+                        <p class="title">CPF</p>
+                        <p class="content">000.000.000-00</p>
+
+                        <div class="standart-btn-position">
+                            <button type="button" id="cancel-button"
+                                class="standart-form-buttons form-items-gray hover-border">Cancelar</button>
+                            <button type="submit" id="save-button"
+                                class="standart-form-buttons form-items-orange hover-background">Salvar</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="div-estatistica">
+                    <h2>ESTATÍSTICAS</h2>
+                    <div class="estatistica">
+                        <div class="estatistica-botoes">
+                            <select class="select-game" name="size-game">
+                                <option selected hidden>MODO DE JOGO</option>
+                                <option value="2">QUALQUER</option>
+                                <option value="4">CLASSICO</option>
+                                <option value="6">CONTRA TEMPO</option>
+                            </select>
+                            <select class="select-game" name="size-game">
+                                <option selected hidden>TABULEIRO</option>
+                                <option value="2">TODOS</option>
+                                <option value="4">2X2</option>
+                                <option value="6">4X4</option>
+                                <option value="6">6X6</option>
+                                <option value="6">8X8</option>
+                            </select>
+                        </div>
+                        <div class="estatistica-info">
+                            <div class="estatistica-item">
+                                <p class="title">PARTIDAS</p>
+                                <p class="content">15</p>
+                            </div>
+                            <div class="estatistica-item">
+                                <p class="title">VITÓRIA</p>
+                                <p class="content">8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="partida-buttons buttons-absolute">
+        <a href="index.php" title="Sair">
+            <span class="material-symbols-outlined">logout</span>
+        </a>
+        <a href="ranking.php" title="Ranking Global">
+            <span class="material-symbols-outlined">social_leaderboard</span>
+        </a>
+        <a href="config.php" title="Jogar agora!">
+            <img src="../img/robito_branco.png" alt="">
+        </a>
+    </div>
+    <script src="../js/perfil.js"></script>
+</body>
+
+</html>

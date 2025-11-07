@@ -7,8 +7,8 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open index.html",
-            "file": "c:\\Users\\Raissa\\Desktop\\code-match\\public\\index.html"
+            "name": "Open index.php",
+            "file": "c:\\Users\\Raissa\\Desktop\\code-match\\public\\index.php"
         }
     ]
 }
