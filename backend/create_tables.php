@@ -26,7 +26,7 @@ $sqlUsuarios = "CREATE TABLE IF NOT EXISTS Usuarios (
     Email VARCHAR(100) NOT NULL UNIQUE,
     Senha VARCHAR(255) NOT NULL,
     remember_token VARCHAR(255),
-    token_expira_em DATETIME;
+    token_expira_em DATETIME
 ) ENGINE=InnoDB";
 
 if ($conn->query($sqlUsuarios) === TRUE) {
@@ -40,6 +40,7 @@ $sqlPartida = "CREATE TABLE IF NOT EXISTS Partidas (
     Usuario_ID INT NOT NULL,
     Tabuleiro INT NOT NULL, 
     Modalidade CHAR(14) NOT NULL,
+    Resultado ENUM('VITÓRIA', 'DERROTA') NOT NULL,
     Tempo_regressivo TIME,
     Duracao_partida TIME NOT NULL,
     Jogadas INT NOT NULL,

@@ -42,6 +42,9 @@ function validarEmail(email) {
 }
 
 function validarSenha(senha) {
+    if (senha.length === 0) {
+         return { valido: true, mensagem: "" };
+    }
     if (senha.length < 6) {
         return { valido: false, mensagem: "Senha deve ter pelo menos 6 caracteres" };
     }
@@ -106,6 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelButton = document.getElementById('cancel-button'); 
     const statsBox = document.querySelector('.div-estatistica'); 
 
+    const viewNome = document.querySelector('#view-mode p[data-field="nome"]');
+    const viewEmail = document.querySelector('#view-mode p[data-field="email"]');
+
     const readOnlyFields = [
         document.getElementById('edit-username'),
         document.getElementById('edit-data-nascimento'),
@@ -164,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function validarFormularioPerfil(event) {
+    async function validarEAtualizarPerfil(event) {
         event.preventDefault();
         
         let formularioValido = true;
@@ -199,24 +205,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (formularioValido) {
-            alert('Perfil atualizado com sucesso!');
-            toggleEditMode(); 
+            const formData = new FormData();
+            formData.append('nome_completo', inputNome.value);
+            formData.append('email', inputEmail.value);
+            formData.append('telefone', inputTelefone.value);
+            formData.append('senha', inputSenha.value);
+
+            try {
+                const response = await fetch('../backend/atualizar_perfil.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    alert(result.message);
+                    
+                    if(viewNome) viewNome.textContent = result.newData.nome;
+                    if(viewEmail) viewEmail.textContent = result.newData.email;
+                    
+                    inputSenha.value = "";
+                    
+                    toggleEditMode();
+                } else {
+                    alert('Erro: ' + result.message);
+                }
+
+            } catch (error) {
+                console.error('Erro na requisição fetch:', error);
+                alert('Ocorreu um erro de comunicação com o servidor.');
+            }
+            
         } else {
             alert('Por favor, corrija os erros no formulário.');
         }
     }
 
     if (formEdicao) {
-        formEdicao.addEventListener('submit', validarFormularioPerfil);
+        formEdicao.addEventListener('submit', validarEAtualizarPerfil);
     }
 
     function validarAoPerderFoco(input, funcaoValidacao) {
         if (input) {
             input.addEventListener('blur', function() {
                 const valor = this.value;
+
+                if (valor.trim() === '' && input.id !== 'edit-email') {
+                    limparErro(this);
+                    return;
+                }
+
                 const resultado = funcaoValidacao(valor);
                 
-                if (resultado && !resultado.valido && valor.trim() !== '') {
+                if (resultado && !resultado.valido) {
                     mostrarErro(this, resultado.mensagem);
                 } else if (resultado && resultado.valido) {
                     limparErro(this);

@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (password_verify($senha, $row["Senha"])) {
             $_SESSION["usuario"] = $row["Usuario"];
+            $_SESSION["usuario_id"] = $row["ID"]; 
 
             if ($lembrar) {
                 setcookie("usuario_salvo", $usuario, time() + (7 * 24 * 60 * 60), "/");

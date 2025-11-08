@@ -1,3 +1,75 @@
+<?php
+session_start();
+include("../backend/db_config.php"); 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Erro de conexão com o banco de dados: " . $conn->connect_error);
+}
+
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: index.php');
+    exit;
+}
+$usuario_id = $_SESSION['usuario_id'];
+
+$sql_usuario = "SELECT Nome_Completo, Usuario, Email, Data_nasc, Cpf, Telefone FROM Usuarios WHERE ID = ?";
+$stmt_usuario = $conn->prepare($sql_usuario);
+$stmt_usuario->bind_param("i", $usuario_id);
+$stmt_usuario->execute();
+$result_usuario = $stmt_usuario->get_result();
+$usuario = $result_usuario->fetch_assoc();
+$stmt_usuario->close();
+
+$filtro_modo = $_GET['modo_jogo'] ?? 'QUALQUER';
+$filtro_tabuleiro = $_GET['tabuleiro'] ?? 'TODOS';
+
+$sql_stats = "SELECT 
+                COUNT(ID) as total_partidas,
+                SUM(CASE WHEN Resultado = 'VITÓRIA' THEN 1 ELSE 0 END) as total_vitorias
+              FROM Partidas
+              WHERE Usuario_ID = ?";
+
+$params_stats = [$usuario_id];
+$types_stats = "i";
+
+if ($filtro_modo != 'QUALQUER') {
+    $sql_stats .= " AND Modalidade = ?";
+    $params_stats[] = $filtro_modo;
+    $types_stats .= "s";
+}
+
+if ($filtro_tabuleiro != 'TODOS') {
+    $sql_stats .= " AND Tabuleiro = ?";
+    $params_stats[] = $filtro_tabuleiro;
+    $types_stats .= "i";
+}
+
+$stmt_stats = $conn->prepare($sql_stats);
+if ($stmt_stats === false) {
+    die("Erro ao preparar a consulta de estatísticas: " . $conn->error);
+}
+$stmt_stats->bind_param($types_stats, ...$params_stats);
+$stmt_stats->execute();
+$result_stats = $stmt_stats->get_result();
+$stats = $result_stats->fetch_assoc();
+
+$total_partidas = $stats['total_partidas'] ?? 0;
+$total_vitorias = $stats['total_vitorias'] ?? 0;
+$stmt_stats->close();
+
+
+$sql_historico = "SELECT Tabuleiro, Modalidade, Duracao_partida, Resultado, Data_partida 
+                  FROM Partidas 
+                  WHERE Usuario_ID = ? 
+                  ORDER BY Data_partida DESC"; 
+
+$stmt_historico = $conn->prepare($sql_historico);
+$stmt_historico->bind_param("i", $usuario_id);
+$stmt_historico->execute();
+$result_historico = $stmt_historico->get_result();
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -38,126 +110,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">1.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">2.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">3.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">4.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">5.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">6.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">7.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">8.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">9.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">10.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">11.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">12.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-vitoria">
-                            <td class="tr-border-left">13.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>VITÓRIA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">14.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
-                        <tr class="resultado-derrota">
-                            <td class="tr-border-left">15.</td>
-                            <td>8x8</td>
-                            <td>CONTRA O TEMPO</td>
-                            <td>11:00</td>
-                            <td>DERROTA</td>
-                            <td class="tr-border-right">08/09/2025 - 16:54</td>
-                        </tr>
+                        <?php if ($result_historico->num_rows > 0): ?>
+                            <?php $count = 1; ?>
+                            <?php while($partida = $result_historico->fetch_assoc()): ?>
+                                <?php
+                                $classe_resultado = ($partida['Resultado'] == 'VITÓRIA') ? 'resultado-vitoria' : 'resultado-derrota';
+                                ?>
+                                <tr class="<?php echo $classe_resultado; ?>">
+                                    <td class="tr-border-left"><?php echo $count++; ?>.</td>
+                                    <td><?php echo htmlspecialchars($partida['Tabuleiro']); ?>x<?php echo htmlspecialchars($partida['Tabuleiro']); ?></td>
+                                    <td><?php echo htmlspecialchars($partida['Modalidade']); ?></td>
+                                    <td><?php echo htmlspecialchars(date('H:i:s', strtotime($partida['Duracao_partida']))); ?></td>
+                                    <td><?php echo htmlspecialchars($partida['Resultado']); ?></td>
+                                    <td class="tr-border-right"><?php echo htmlspecialchars(date('d/m/Y - H:i', strtotime($partida['Data_partida']))); ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" style="text-align:center; color: black; background-color: #f0f0f0;">Nenhuma partida encontrada.</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -166,11 +138,11 @@
                 <div class="personal-info">
                     <div id="view-mode">
                         <p class="title">USERNAME</p>
-                        <p class="content">TRAINEE</p>
+                        <p class="content"><?php echo htmlspecialchars($usuario['Usuario']); ?></p>
                         <p class="title">NOME COMPLETO</p>
-                        <p class="content">Antonio Carlos Rosendo da Silva</p>
+                        <p class="content" data-field="nome"><?php echo htmlspecialchars($usuario['Nome_Completo']); ?></p>
                         <p class="title">E-MAIL</p>
-                        <p class="content">exemplo@gmail.com</p>
+                        <p class="content" data-field="email"><?php echo htmlspecialchars($usuario['Email']); ?></p>
                         <a href="#" id="edit-button" class="edit-icon" title="Editar">
                             <span class="material-symbols-outlined">edit</span>
                         </a>
@@ -178,37 +150,37 @@
 
                     <form id="edit-mode" style="display: none;">
                         <p class="title">USERNAME</p>
-                        <p class="content">TRAINEE</p>
+                        <p class="content"><?php echo htmlspecialchars($usuario['Usuario']); ?></p>
 
                         <div class="input-box">
                             <p class="title">NOME COMPLETO</p>
-                            <input type="text" id="edit-nome" class="standart-form-items form-items-gray"
-                                value="Antonio Carlos Rosendo da Silva">
+                            <input type="text" id="edit-nome" name="nome_completo" class="standart-form-items form-items-gray"
+                                value="<?php echo htmlspecialchars($usuario['Nome_Completo']); ?>">
                         </div>
 
                         <div class="input-box">
                             <p class="title">E-MAIL</p>
-                            <input type="email" id="edit-email" class="standart-form-items form-items-gray"
-                                value="exemplo@gmail.com">
+                            <input type="email" id="edit-email" name="email" class="standart-form-items form-items-gray"
+                                value="<?php echo htmlspecialchars($usuario['Email']); ?>">
                         </div>
 
                         <div class="input-box">
                             <p class="title">SENHA</p>
-                            <input type="password" id="edit-senha" class="standart-form-items form-items-gray"
-                                value="12345678">
+                            <input type="password" id="edit-senha" name="senha" class="standart-form-items form-items-gray"
+                                placeholder="Deixe em branco para não alterar">
                         </div>
 
                         <div class="input-box">
                             <p class="title">TELEFONE</p>
                             <input type="tel" id="edit-telefone" class="standart-form-items form-items-gray"
-                                value="(11)91234-5678" maxlength="15">
+                                value="<?php echo htmlspecialchars($usuario['Telefone']); ?>" maxlength="15">
                         </div>
 
                         <p class="title">DATA DE NASCIMENTO</p>
-                        <p class="content">01/01/2000</p>
+                        <p class="content"><?php echo htmlspecialchars(date('d/m/Y', strtotime($usuario['Data_nasc']))); ?></p>
 
                         <p class="title">CPF</p>
-                        <p class="content">000.000.000-00</p>
+                        <p class="content"><?php echo htmlspecialchars($usuario['Cpf']); ?></p>
 
                         <div class="standart-btn-position">
                             <button type="button" id="cancel-button"
@@ -225,27 +197,26 @@
                         <div class="estatistica-botoes">
                             <select class="select-game" name="size-game">
                                 <option selected hidden>MODO DE JOGO</option>
-                                <option value="2">QUALQUER</option>
-                                <option value="4">CLASSICO</option>
-                                <option value="6">CONTRA TEMPO</option>
+                                <option value="QUALQUER" <?php if ($filtro_modo == 'QUALQUER') echo 'selected'; ?>>MODO DE JOGO</option>
+                                <option value="CLASSICO" <?php if ($filtro_modo == 'CLASSICO') echo 'selected'; ?>>CLÁSSICO</option>
+                                <option value="CONTRA O TEMPO" <?php if ($filtro_modo == 'CONTRA O TEMPO') echo 'selected'; ?>>CONTRA O TEMPO</option>
                             </select>
                             <select class="select-game" name="size-game">
-                                <option selected hidden>TABULEIRO</option>
-                                <option value="2">TODOS</option>
-                                <option value="4">2X2</option>
-                                <option value="6">4X4</option>
-                                <option value="6">6X6</option>
-                                <option value="6">8X8</option>
+                                <option value="TODOS" <?php if ($filtro_tabuleiro == 'TODOS') echo 'selected'; ?>>TABULEIRO</option>
+                                <option value="2" <?php if ($filtro_tabuleiro == '2') echo 'selected'; ?>>2X2</option>
+                                <option value="4" <?php if ($filtro_tabuleiro == '4') echo 'selected'; ?>>4X4</option>
+                                <option value="6" <?php if ($filtro_tabuleiro == '6') echo 'selected'; ?>>6X6</option>
+                                <option value="8" <?php if ($filtro_tabuleiro == '8') echo 'selected'; ?>>8X8</option>
                             </select>
                         </div>
                         <div class="estatistica-info">
                             <div class="estatistica-item">
                                 <p class="title">PARTIDAS</p>
-                                <p class="content">15</p>
+                                <p class="content"><?php echo $total_partidas; ?></p>
                             </div>
                             <div class="estatistica-item">
                                 <p class="title">VITÓRIA</p>
-                                <p class="content">8</p>
+                                <p class="content"><?php echo $total_vitorias; ?></p>
                             </div>
                         </div>
                     </div>
@@ -267,5 +238,8 @@
     </div>
     <script src="../js/perfil.js"></script>
 </body>
-
 </html>
+<?php
+$stmt_historico->close();
+$conn->close();
+?>
