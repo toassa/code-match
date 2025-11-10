@@ -226,6 +226,7 @@
             <img src="../img/robito_branco.png" alt="">
         </a>
     </div>
+    <?php include("./cookies.php"); ?>
 </body>
 
 </html>

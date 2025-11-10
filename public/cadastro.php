@@ -67,5 +67,6 @@
     </div>
 
     <script src="../js/validation.js"></script>
+    <?php include("./cookies.php"); ?>
 </body>
 </html>

@@ -44,5 +44,6 @@
     <div class="index-logo">
         <img src="../img/robito_inclinado.png" alt="Robô verde água mascote do jogo CodeMatch">
     </div>
+    <?php include("./cookies.php"); ?>
 </body>
 </html> 

@@ -237,9 +237,10 @@ $result_historico = $stmt_historico->get_result();
         </a>
     </div>
     <script src="../js/perfil.js"></script>
+    <?php include("./cookies.php"); ?>
 </body>
 </html>
 <?php
-$stmt_historico->close();
-$conn->close();
+    $stmt_historico->close();
+    $conn->close();
 ?>

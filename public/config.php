@@ -71,6 +71,7 @@ if (!isset($_SESSION["usuario"])) {
 
     </section>
     <script src="../js/config.js"></script>
+    <?php include("./cookies.php"); ?>    
 </body>
 
 </html>

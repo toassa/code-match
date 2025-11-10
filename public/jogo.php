@@ -82,6 +82,7 @@
   <script src="../js/tabuleiro.js"></script>
   <script src="../js/jogo.js"></script>
   <script src="../js/trapaca.js"></script>
+    <?php include("./cookies.php"); ?>
 </body>
 
 </html>
