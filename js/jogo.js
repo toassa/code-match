@@ -145,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   function mostrarModalVitoria() {
-    // SALVA A PARTIDA COMO VITÓRIA
     salvarPartida('VITÓRIA');
     
     const infoJogadasEl = document.getElementById('infoJogadas');
@@ -225,24 +224,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function salvarPartida(resultado) {
-  // Pega o tamanho do tabuleiro
   const tabuleiro = tamanhoGlobal;
   
-  // Determina a modalidade
   const modalidade = (modoDeJogo === 'contra_tempo') ? 'CONTRA O TEMPO' : 'CLASSICO';
   
-  // Converte o tempo decorrido para formato HH:MM:SS
   const horas = Math.floor(tempoDecorrido / 3600);
   const minutos = Math.floor((tempoDecorrido % 3600) / 60);
   const segundos = tempoDecorrido % 60;
   const duracao = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
   
-  // Pega o número de jogadas do elemento
+
   const infoJogadasEl = document.getElementById('infoJogadas');
   const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
   const jogadas = jogadasText.match(/\d+/) ? parseInt(jogadasText.match(/\d+/)[0]) : 0;
   
-  // Prepara o tempo regressivo (só para modo contra o tempo)
   let tempo_regressivo = null;
   if (modalidade === 'CONTRA O TEMPO') {
     const tempoRestanteAtual = Math.max(0, tempoRestante);
@@ -251,17 +246,15 @@ function salvarPartida(resultado) {
     tempo_regressivo = `00:${minReg.toString().padStart(2, '0')}:${segReg.toString().padStart(2, '0')}`;
   }
   
-  // Monta o objeto com os dados da partida
   const dadosPartida = {
     tabuleiro: tabuleiro,
     modalidade: modalidade,
-    resultado: resultado, // 'VITÓRIA' ou 'DERROTA'
+    resultado: resultado, 
     duracao: duracao,
     jogadas: jogadas,
     tempo_regressivo: tempo_regressivo
   };
   
-  // Envia os dados para o PHP via fetch
   fetch('../backend/salvar_partida.php', {
     method: 'POST',
     headers: {
@@ -289,7 +282,6 @@ function registrarDesistencia() {
 const mostrarModalDesistencia = (destino = "perfil.php") => {
   bloqueio = true;
 
-  // Para o cronômetro
   if (window.CMContraTempo && typeof window.CMContraTempo.pararCronometro === 'function') {
     window.CMContraTempo.pararCronometro();
   } else if (typeof pararCronometro === 'function') {
@@ -299,18 +291,14 @@ const mostrarModalDesistencia = (destino = "perfil.php") => {
   const modalDesistencia = document.getElementById("desistencia-modal");
   const confirmarBtn = document.getElementById("modal-confirmar");
 
-  // CORREÇÃO: Remove o evento anterior e adiciona novo com salvamento
   const novoConfirmarBtn = confirmarBtn.cloneNode(true);
   confirmarBtn.parentNode.replaceChild(novoConfirmarBtn, confirmarBtn);
   
-  // Adiciona evento de click que salva antes de redirecionar
   novoConfirmarBtn.addEventListener('click', (e) => {
     e.preventDefault();
     
-    // Salva a partida como DERROTA
     registrarDesistencia();
     
-    // Aguarda um pouco para garantir que a requisição foi enviada
     setTimeout(() => {
       window.location.href = destino;
     }, 500);
