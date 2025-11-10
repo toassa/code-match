@@ -144,7 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const mostrarModalVitoria = () => {
+  function mostrarModalVitoria() {
+    // SALVA A PARTIDA COMO VITÓRIA
+    salvarPartida('VITÓRIA');
+    
+    const infoJogadasEl = document.getElementById('infoJogadas');
+    const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
+    const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
+    
     const modal = document.createElement("div");
     modal.classList.add("modal-vitoria");
     modal.innerHTML = `
@@ -161,24 +168,24 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
     document.body.appendChild(modal);
-
+  
     const btnSim = modal.querySelector('a[href="config.php"]');
     const btnNao = modal.querySelector('a[href="perfil.php"]');
-
+  
     if (btnSim) {
       btnSim.addEventListener("click", () => {
         modal.remove();
         location.reload();
       });
     }
-
+  
     if (btnNao) {
       btnNao.addEventListener("click", () => {
         modal.remove();
         window.location.href = "perfil.php";
       });
     }
-  };
+  }
 
   const resetarSelecao = () => {
     [primeiraCarta, segundaCarta] = [null, null];
@@ -217,47 +224,100 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(`Tabuleiro ${tamanho}x${tamanho} carregado com ${totalCartas} cartas.`);
 });
 
-function mostrarModalDerrota() {
+function salvarPartida(resultado) {
+  // Pega o tamanho do tabuleiro
+  const tabuleiro = tamanhoGlobal;
+  
+  // Determina a modalidade
+  const modalidade = (modoDeJogo === 'contra_tempo') ? 'CONTRA O TEMPO' : 'CLASSICO';
+  
+  // Converte o tempo decorrido para formato HH:MM:SS
+  const horas = Math.floor(tempoDecorrido / 3600);
+  const minutos = Math.floor((tempoDecorrido % 3600) / 60);
+  const segundos = tempoDecorrido % 60;
+  const duracao = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+  
+  // Pega o número de jogadas do elemento
   const infoJogadasEl = document.getElementById('infoJogadas');
   const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
-  const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
-
-  const modal = document.createElement("div");
-  modal.classList.add("modal-derrota");
-  modal.innerHTML = `
-      <div class="overlay">
-          <div class="background-div standart-form-div ">
-              <h2>Que pena!</h2>
-              <p>O tempo esgotou antes de você encontrar todos os pares.</p>
-              <p>Você fez <strong>${jogadas}</strong> jogadas!</p>
-              <p>Deseja tentar novamente?</p>
-              <div class="standart-btn-position">
-                  <a href="perfil.php" class="standart-form-buttons form-items-gray hover-border">Não</a>
-                  <a href="#" id="btn-tentar-novamente" class="standart-form-buttons form-items-orange hover-background">Sim</a>
-                </div>
-          </div>
-      </div>
-    `;
-  document.body.appendChild(modal);
-
-  const btnSim = modal.querySelector('#btn-tentar-novamente');
-  const btnNao = modal.querySelector('a[href="perfil.php"]');
-
-  if (btnSim) {
-    btnSim.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.remove();
-      location.reload();
-    });
+  const jogadas = jogadasText.match(/\d+/) ? parseInt(jogadasText.match(/\d+/)[0]) : 0;
+  
+  // Prepara o tempo regressivo (só para modo contra o tempo)
+  let tempo_regressivo = null;
+  if (modalidade === 'CONTRA O TEMPO') {
+    const tempoRestanteAtual = Math.max(0, tempoRestante);
+    const minReg = Math.floor(tempoRestanteAtual / 60);
+    const segReg = tempoRestanteAtual % 60;
+    tempo_regressivo = `00:${minReg.toString().padStart(2, '0')}:${segReg.toString().padStart(2, '0')}`;
   }
-
-  if (btnNao) {
-    btnNao.addEventListener("click", () => {
-      modal.remove();
-      window.location.href = "perfil.php";
-    });
-  }
+  
+  // Monta o objeto com os dados da partida
+  const dadosPartida = {
+    tabuleiro: tabuleiro,
+    modalidade: modalidade,
+    resultado: resultado, // 'VITÓRIA' ou 'DERROTA'
+    duracao: duracao,
+    jogadas: jogadas,
+    tempo_regressivo: tempo_regressivo
+  };
+  
+  // Envia os dados para o PHP via fetch
+  fetch('../backend/salvar_partida.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(dadosPartida)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      console.log('Partida salva com sucesso!', data);
+    } else {
+      console.error('Erro ao salvar partida:', data.message);
+    }
+  })
+  .catch(error => {
+    console.error('Erro na requisição:', error);
+  });
 }
+
+function registrarDesistencia() {
+  salvarPartida('DERROTA');
+}
+
+const mostrarModalDesistencia = (destino = "perfil.php") => {
+  bloqueio = true;
+
+  // Para o cronômetro
+  if (window.CMContraTempo && typeof window.CMContraTempo.pararCronometro === 'function') {
+    window.CMContraTempo.pararCronometro();
+  } else if (typeof pararCronometro === 'function') {
+    pararCronometro();
+  }
+
+  const modalDesistencia = document.getElementById("desistencia-modal");
+  const confirmarBtn = document.getElementById("modal-confirmar");
+
+  // CORREÇÃO: Remove o evento anterior e adiciona novo com salvamento
+  const novoConfirmarBtn = confirmarBtn.cloneNode(true);
+  confirmarBtn.parentNode.replaceChild(novoConfirmarBtn, confirmarBtn);
+  
+  // Adiciona evento de click que salva antes de redirecionar
+  novoConfirmarBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Salva a partida como DERROTA
+    registrarDesistencia();
+    
+    // Aguarda um pouco para garantir que a requisição foi enviada
+    setTimeout(() => {
+      window.location.href = destino;
+    }, 500);
+  });
+
+  modalDesistencia.style.display = 'flex';
+};
 
 function configurarDisplayInicial() {
   if (modoDeJogo === 'contra_tempo') {
