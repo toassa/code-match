@@ -58,14 +58,20 @@ $total_partidas = $stats['total_partidas'] ?? 0;
 $total_vitorias = $stats['total_vitorias'] ?? 0;
 $stmt_stats->close();
 
-
 $sql_historico = "SELECT Tabuleiro, Modalidade, Duracao_partida, Resultado, Data_partida 
                   FROM Partidas 
-                  WHERE Usuario_ID = ? 
-                  ORDER BY Data_partida DESC"; 
+                  WHERE Usuario_ID = ?";
+
+$params_historico = [$usuario_id];
+$types_historico = "i";
+
+$sql_historico .= " ORDER BY Data_partida DESC";
 
 $stmt_historico = $conn->prepare($sql_historico);
-$stmt_historico->bind_param("i", $usuario_id);
+if ($stmt_historico === false) {
+    die("Erro ao preparar a consulta de histórico: " . $conn->error);
+}
+$stmt_historico->bind_param($types_historico, ...$params_historico);
 $stmt_historico->execute();
 $result_historico = $stmt_historico->get_result();
 
@@ -194,21 +200,26 @@ $result_historico = $stmt_historico->get_result();
                 <div class="div-estatistica">
                     <h2>ESTATÍSTICAS</h2>
                     <div class="estatistica">
-                        <div class="estatistica-botoes">
-                            <select class="select-game" name="size-game">
-                                <option selected hidden>MODO DE JOGO</option>
-                                <option value="QUALQUER" <?php if ($filtro_modo == 'QUALQUER') echo 'selected'; ?>>MODO DE JOGO</option>
-                                <option value="CLASSICO" <?php if ($filtro_modo == 'CLASSICO') echo 'selected'; ?>>CLÁSSICO</option>
-                                <option value="CONTRA O TEMPO" <?php if ($filtro_modo == 'CONTRA O TEMPO') echo 'selected'; ?>>CONTRA O TEMPO</option>
-                            </select>
-                            <select class="select-game" name="size-game">
-                                <option value="TODOS" <?php if ($filtro_tabuleiro == 'TODOS') echo 'selected'; ?>>TABULEIRO</option>
-                                <option value="2" <?php if ($filtro_tabuleiro == '2') echo 'selected'; ?>>2X2</option>
-                                <option value="4" <?php if ($filtro_tabuleiro == '4') echo 'selected'; ?>>4X4</option>
-                                <option value="6" <?php if ($filtro_tabuleiro == '6') echo 'selected'; ?>>6X6</option>
-                                <option value="8" <?php if ($filtro_tabuleiro == '8') echo 'selected'; ?>>8X8</option>
-                            </select>
-                        </div>
+                        <form method="GET" action="perfil.php" class="estatistica-botoes">
+                            <div class="selects-container"> <select class="select-game" name="modo_jogo">
+                                    <option value="QUALQUER" <?php if ($filtro_modo == 'QUALQUER') echo 'selected'; ?>>MODO DE JOGO</option>
+                                    <option value="CLASSICO" <?php if ($filtro_modo == 'CLASSICO') echo 'selected'; ?>>CLÁSSICO</option>
+                                    <option value="CONTRA O TEMPO" <?php if ($filtro_modo == 'CONTRA O TEMPO') echo 'selected'; ?>>CONTRA O TEMPO</option>
+                                </select>
+
+                                <select class="select-game" name="tabuleiro">
+                                    <option value="TODOS" <?php if ($filtro_tabuleiro == 'TODOS') echo 'selected'; ?>>TABULEIRO</option>
+                                    <option value="2" <?php if ($filtro_tabuleiro == '2') echo 'selected'; ?>>2X2</option>
+                                    <option value="4" <?php if ($filtro_tabuleiro == '4') echo 'selected'; ?>>4X4</option>
+                                    <option value="6" <?php if ($filtro_tabuleiro == '6') echo 'selected'; ?>>6X6</option>
+                                    <option value="8" <?php if ($filtro_tabuleiro == '8') echo 'selected'; ?>>8X8</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="standart-form-buttons form-items-orange hover-background">
+                                Filtrar
+                            </button>
+                        </form>
                         <div class="estatistica-info">
                             <div class="estatistica-item">
                                 <p class="title">PARTIDAS</p>

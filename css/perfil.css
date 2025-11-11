@@ -77,16 +77,23 @@
 
 .estatistica-botoes {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
-    margin: auto;
-    align-items: center;
-    margin: 0;
+    align-items: center; 
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.selects-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
     gap: 5px;
 }
 
 .estatistica .select-game {
-    width: 45%;
+    width: 50%;
     margin: 0px;
     background-color: var(--orange);
     border-radius: 30px;
