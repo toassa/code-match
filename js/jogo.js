@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
       primeiraCarta.encontrada = true;
       segundaCarta.encontrada = true;
 
-
       if (typeof registrarParEncontrado === 'function') {
         registrarParEncontrado(primeiraCarta, segundaCarta);
       }
@@ -117,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnDesistir = document.getElementById("btn-desistir");
   const btnVoltarDesistir = document.getElementById("btn-voltar-desistir");
   const modalCancelar = document.getElementById("modal-cancelar");
-
   const mostrarModalDesistencia = (destino = "perfil.php") => {
     bloqueio = true;
 
@@ -130,11 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalDesistencia = document.getElementById("desistencia-modal");
     const confirmarBtn = document.getElementById("modal-confirmar");
 
-    confirmarBtn.setAttribute("href", destino);
+    const novoConfirmarBtn = confirmarBtn.cloneNode(true);
+    confirmarBtn.parentNode.replaceChild(novoConfirmarBtn, confirmarBtn);
+
+    novoConfirmarBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      registrarDesistencia();
+      
+      setTimeout(() => {
+        window.location.href = destino;
+      }, 500);
+    });
 
     modalDesistencia.style.display = 'flex';
   };
-
 
   const verificarVitoria = () => {
     const todasEncontradas = cartas.every((c) => c.encontrada);
@@ -186,6 +194,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  window.mostrarModalDerrota = function() {
+    bloqueio = true;
+    salvarPartida('DERROTA');
+    
+    const infoJogadasEl = document.getElementById('infoJogadas');
+    const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
+    const jogadas = jogadasText.match(/\d+/) ? jogadasText.match(/\d+/)[0] : '0';
+    
+    const modal = document.createElement("div");
+    modal.classList.add("modal-vitoria");
+    modal.innerHTML = `
+      <div class="overlay">
+          <div class="background-div standart-form-div ">
+              <h2>Tempo Esgotado!</h2>
+              <p>Você fez <strong>${jogadas}</strong> jogadas.</p>
+              <p>Deseja tentar novamente?</p>
+              <div class="standart-btn-position">
+                  <a href="perfil.php" class="standart-form-buttons form-items-orange hover-background">Não</a>
+                  <a href="config.php" class="standart-form-buttons form-items-orange hover-background">Sim</a>
+                </div>
+          </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  
+    const btnSim = modal.querySelector('a[href="config.php"]');
+    const btnNao = modal.querySelector('a[href="perfil.php"]');
+  
+    if (btnSim) {
+      btnSim.addEventListener("click", () => {
+        modal.remove();
+        location.reload();
+      });
+    }
+  
+    if (btnNao) {
+      btnNao.addEventListener("click", () => {
+        modal.remove();
+        window.location.href = "perfil.php";
+      });
+    }
+  };
+
   const resetarSelecao = () => {
     [primeiraCarta, segundaCarta] = [null, null];
     bloqueio = false;
@@ -205,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
   if (modalCancelar) {
     modalCancelar.addEventListener('click', (e) => {
       e.preventDefault();
@@ -219,8 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   modalDesistencia.style.display = 'none';
-
-  console.log(`Tabuleiro ${tamanho}x${tamanho} carregado com ${totalCartas} cartas.`);
 });
 
 function salvarPartida(resultado) {
@@ -233,7 +281,6 @@ function salvarPartida(resultado) {
   const segundos = tempoDecorrido % 60;
   const duracao = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
   
-
   const infoJogadasEl = document.getElementById('infoJogadas');
   const jogadasText = infoJogadasEl ? infoJogadasEl.textContent : 'Número de jogadas: 0';
   const jogadas = jogadasText.match(/\d+/) ? parseInt(jogadasText.match(/\d+/)[0]) : 0;
@@ -265,7 +312,6 @@ function salvarPartida(resultado) {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      console.log('Partida salva com sucesso!', data);
     } else {
       console.error('Erro ao salvar partida:', data.message);
     }
@@ -278,34 +324,6 @@ function salvarPartida(resultado) {
 function registrarDesistencia() {
   salvarPartida('DERROTA');
 }
-
-const mostrarModalDesistencia = (destino = "perfil.php") => {
-  bloqueio = true;
-
-  if (window.CMContraTempo && typeof window.CMContraTempo.pararCronometro === 'function') {
-    window.CMContraTempo.pararCronometro();
-  } else if (typeof pararCronometro === 'function') {
-    pararCronometro();
-  }
-
-  const modalDesistencia = document.getElementById("desistencia-modal");
-  const confirmarBtn = document.getElementById("modal-confirmar");
-
-  const novoConfirmarBtn = confirmarBtn.cloneNode(true);
-  confirmarBtn.parentNode.replaceChild(novoConfirmarBtn, confirmarBtn);
-  
-  novoConfirmarBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    
-    registrarDesistencia();
-    
-    setTimeout(() => {
-      window.location.href = destino;
-    }, 500);
-  });
-
-  modalDesistencia.style.display = 'flex';
-};
 
 function configurarDisplayInicial() {
   if (modoDeJogo === 'contra_tempo') {
@@ -398,7 +416,12 @@ function iniciarCronometroRegressivo() {
   regressivoInterval = setInterval(() => {
     if (tempoRestante <= 0) {
       pararCronometro();
-      mostrarModalDerrota();
+      
+      if (typeof window.mostrarModalDerrota === 'function') {
+        window.mostrarModalDerrota();
+      } else {
+        console.error('Função mostrarModalDerrota não encontrada!');
+      }
       return;
     }
 
