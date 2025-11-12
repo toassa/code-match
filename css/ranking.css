@@ -1,42 +1,64 @@
 #ranking {
     text-align: center;
     width: 100%;
+    padding: 20px 0;
 }
 
 #ranking h1 {
-    font-size: 40px;
+    font-size: clamp(28px, 5vw, 40px);
     font-weight: bold;
     color: var(--green-blue);
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.div-filtro {
-    width: 80%;
-    background-color: var(--light-gray);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: 30px;
-    margin-right: 30px;
-    padding: 30px 30px;
-}
-
-.div-filtro h2 {
-    font-size: 35px;
-    font-weight: bold;
-    color: var(--green-blue);
-    text-align: center;
-    margin-top: 10px;
     margin-bottom: 10px;
 }
 
+#ranking p {
+    font-size: clamp(12px, 2vw, 16px);
+    margin-bottom: 20px;
+}
+
+
+.div-pagina {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.div-filtro-box {
+    flex: 0 0 280px;
+    min-width: 250px;
+}
+
+.div-filtro {
+    width: 100%;
+    background-color: var(--light-gray);
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.div-filtro h2 {
+    font-size: clamp(24px, 4vw, 35px);
+    font-weight: bold;
+    color: var(--green-blue);
+    text-align: center;
+    margin: 0 0 20px 0;
+}
 
 .div-filtro p {
-    font-size: 20px;
+    font-size: clamp(14px, 2.5vw, 20px);
     color: #000;
-    text-align: center;
-    margin: 10px;
+    text-align: left;
+    margin: 15px 0 8px 0;
+    font-weight: 600;
 }
 
 .select-game {
@@ -45,72 +67,108 @@
     color: #fff;
     border: none;
     border-radius: 12px;
-    padding: 8px 12px;
+    padding: 12px;
     font-family: var(--font-family);
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     margin-bottom: 10px;
     outline: none;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.select-game:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .select-game option {
     background-color: var(--light-gray);
     color: var(--green-blue);
+    padding: 10px;
 }
 
-.tabela-scroll {
-    max-height: 65vh; 
-    overflow-y: auto; 
-}   
+
+.div-ranking {
+    flex: 1;
+    max-width: 900px;
+    background-color: var(--light-gray);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-sizing: border-box;
+}
 
 .table-ranking {
-    width: 95%; 
-    margin: 0 auto;
+    width: 100%;
     border-collapse: separate;
-    border-spacing: 0 10px; 
-    padding: 0;
+    border-spacing: 0;
 }
 
 .table-ranking thead {
-    display: table; 
+    background-color: var(--green-blue);
+    color: var(--light-gray);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table-ranking thead tr {
+    display: table;
     width: 100%;
     table-layout: fixed;
-    background-color: var(--light-gray);
-    color: var(--black);
-    border-radius: 8px 8px 0 0;
-    padding: 0 0px 0   0px;
 }
-
-.table-ranking tbody{
-    display: block;
-    max-height: 65vh; 
-    overflow-y: scroll;
-    width: 100%;
-    padding: 0 10px; 
-    background-color: var(--light-gray);
-}
-
 
 .table-ranking th {
     font-weight: bold;
-    padding: 7px 2px;
+    padding: 15px 8px;
+    font-size: clamp(11px, 1.5vw, 14px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.table-ranking tr{
-    text-align: center;
+.table-ranking tbody {
+    display: block;
+    max-height: calc(100vh - 350px);
+    min-height: 400px;
+    overflow-y: auto;
     width: 100%;
+}
+
+.table-ranking tbody tr {
     display: table;
+    width: 100%;
     table-layout: fixed;
-    margin: 0;
-    border-radius: 5px;
+    margin-bottom: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table-ranking tbody tr:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .table-ranking td {
     background-color: var(--orange);
     color: var(--light-gray);
-    padding: 15px 2px;
+    padding: 16px 8px;
     text-align: center;
-    font-size: 12px;
+    font-size: clamp(11px, 1.5vw, 13px);
+    font-weight: 500;
+}
+
+
+.table-ranking .tr-border-left {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    width: 50px;
+    font-weight: bold;
+}
+
+.table-ranking .tr-border-right {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .table-ranking tbody::-webkit-scrollbar {
@@ -119,114 +177,222 @@
 
 .table-ranking tbody::-webkit-scrollbar-track {
     background-color: var(--dark-red);
-    border-radius: 5px; 
+    border-radius: 10px;
+    margin: 5px 0;
 }
 
 .table-ranking tbody::-webkit-scrollbar-thumb {
     background-color: var(--orange);
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.table-ranking .tr-border-left {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-    width: 40px;
+.table-ranking tbody::-webkit-scrollbar-thumb:hover {
+    background-color: var(--green-blue);
 }
 
-.table-ranking .tr-border-right {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+
+.usuario-logado td {
+    box-shadow: inset 0 0 0 3px var(--green-blue);
+    position: relative;
+}
+
+.usuario-logado td::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(14, 192, 193, 0.1);
+    pointer-events: none;
+}
+
+
+.linha-vazia td {
+    background-color: transparent !important;
+    border: 1px dashed #ddd;
+    color: #999;
+}
+
+
+.modalidade-curta {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .modalidade-completa {
+        display: none;
+    }
+    
+    .modalidade-curta {
+        display: inline;
+    }
+    
+    .col-data {
+        font-size: 10px;
+    }
+}
+
+
+.label-filtro {
+    display: block;
+    border: 3px solid var(--green-blue);
+    padding: 12px 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+    color: var(--green-blue);
+    background-color: transparent;
+}
+
+.label-filtro:hover {
+    background-color: var(--green-blue);
+    color: var(--light-gray);
+}
+
+.filtros-radio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0;
 }
 
 .div-filtro input[type="radio"] {
     display: none;
 }
 
-.div-filtro-int label {
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-        background-color: transparent;
-    border: 2px solid var(--green-blue);
-    color: var(--green-blue);
-}
-
-.div-filtro input[type="radio"]:checked + label {
+.div-filtro input[type="radio"]:checked + .label-filtro {
     background-color: var(--green-blue);
     color: var(--light-gray);
+    border-color: var(--green-blue);
 }
 
-.label-filtro{
-    border: 3px solid var(--green-blue);
-    padding: 10px 6px;
-    margin-bottom: 10px;
-    border-radius: 10px;
+
+.div-filtro button,
+.div-filtro a {
+    transition: all 0.3s ease;
 }
 
-.div-pagina {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 0 5%;
-    box-sizing: border-box;
-    width: 100%;
+.div-filtro button:hover,
+.div-filtro a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.div-filtro-box {
-    flex: 1;
-    max-width: 280px;
-    display: flex;
-    justify-content: center;
+
+@media (max-width: 1024px) {
+    .div-pagina {
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .div-filtro-box {
+        flex: 0 0 240px;
+        min-width: 220px;
+    }
+    
+    .table-ranking tbody {
+        max-height: calc(100vh - 320px);
+        min-height: 350px;
+    }
 }
 
-.div-filtro {
-    width: 100%;
-    background-color: var(--light-gray);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 
-.div-ranking {
-    flex: 2.2;
-    max-width: 750px; 
-    background-color: var(--light-gray);
-    padding: 0 25px 0 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    overflow: hidden;
-}
-
-.filtros-radio {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column; 
-}
-
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+    #ranking {
+        padding: 10px 0;
+    }
+    
     .div-pagina {
         flex-direction: column;
-        align-items: center;
-        gap: 30px;
+        align-items: stretch;
+        gap: 20px;
+        padding: 0 10px;
     }
 
-    .div-filtro-box, .div-ranking {
-        width: 90%;
-        max-width: none;
+    .div-filtro-box {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+    }
+    
+    .div-filtro {
+        padding: 20px 15px;
     }
 
+    .div-ranking {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 15px 10px;
+    }
+    
+    .table-ranking tbody {
+        max-height: 400px;
+        min-height: 300px;
+    }
+    
+    .table-ranking th,
+    .table-ranking td {
+        padding: 12px 4px;
+        font-size: 11px;
+    }
+    
+    .table-ranking .tr-border-left {
+        width: 40px;
+    }
     
     .filtros-radio {
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
 }
+
+
+@media (max-width: 480px) {
+    #ranking h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .div-filtro h2 {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .div-filtro p {
+        font-size: 14px;
+        margin: 12px 0 6px 0;
+    }
+    
+    .select-game {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .table-ranking th,
+    .table-ranking td {
+        padding: 10px 2px;
+        font-size: 10px;
+    }
+    
+    .table-ranking .tr-border-left {
+        width: 35px;
+    }
+    
+    .table-ranking tbody {
+        max-height: 350px;
+        min-height: 250px;
+    }
+    
+    .label-filtro {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+}
+
+
