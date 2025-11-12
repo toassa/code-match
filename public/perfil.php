@@ -215,11 +215,7 @@ $result_historico = $stmt_historico->get_result();
                                     <option value="8" <?php if ($filtro_tabuleiro == '8') echo 'selected'; ?>>8X8</option>
                                 </select>
                             </div>
-
-                            <button type="submit" class="standart-form-buttons form-items-orange hover-background">
-                                Filtrar
-                            </button>
-                        </form>
+                        
                         <div class="estatistica-info">
                             <div class="estatistica-item">
                                 <p class="title">PARTIDAS</p>
@@ -230,6 +226,10 @@ $result_historico = $stmt_historico->get_result();
                                 <p class="content"><?php echo $total_vitorias; ?></p>
                             </div>
                         </div>
+                        <button type="submit" class="standart-form-buttons form-items-orange hover-background">
+                                FILTRAR
+                        </button>
+                        </form>
                     </div>
                 </div>
             </div>

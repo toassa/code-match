@@ -50,7 +50,7 @@ if (!isset($_COOKIE['cookies_aceitos'])):
   <script>
     document.getElementById("aceitarCookies").addEventListener("click", function() {
       document.cookie = "cookies_aceitos=true; path=/; max-age=" + (60 * 60 * 24 * 7);
-=      document.getElementById("cookiesModal").style.display = "none";
+      document.getElementById("cookiesModal").style.display = "none";
     });
   </script>
 
