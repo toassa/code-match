@@ -10,12 +10,10 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-// Recebe e sanitiza os filtros
 $filtro_tabuleiro = isset($_GET['tabuleiro']) ? intval($_GET['tabuleiro']) : null;
 $filtro_modalidade = isset($_GET['modalidade']) ? $conn->real_escape_string($_GET['modalidade']) : null;
 $filtro_ordenacao = isset($_GET['ordenacao']) ? $_GET['ordenacao'] : 'tempo';
 
-// Validação dos filtros
 if ($filtro_tabuleiro && !in_array($filtro_tabuleiro, [2, 4, 6, 8])) {
     $filtro_tabuleiro = null;
 }
@@ -38,7 +36,6 @@ $sql = "SELECT
         INNER JOIN Usuarios u ON p.Usuario_ID = u.ID
         WHERE p.Resultado = 'VITÓRIA'";
 
-// Adiciona filtros quando selecionados
 if ($filtro_tabuleiro) {
     $sql .= " AND p.Tabuleiro = " . $filtro_tabuleiro;
 }
@@ -48,7 +45,6 @@ if ($filtro_modalidade) {
     $sql .= " AND p.Modalidade = '" . $filtro_modalidade_upper . "'";
 }
 
-// Ordenação conforme especificação: maiores tabuleiros, menos jogadas, menor tempo
 if ($filtro_ordenacao === 'jogadas') {
     $sql .= " ORDER BY p.Tabuleiro DESC, p.Jogadas ASC, p.Duracao_partida ASC";
 } else {
@@ -59,26 +55,31 @@ $sql .= " LIMIT 10";
 
 $result = $conn->query($sql);
 
-function formatarTempo($tempo) {
-    if (empty($tempo)) return '--';
-    
+function formatarTempo($tempo)
+{
+    if (empty($tempo))
+        return '--';
+
     if (substr($tempo, 0, 3) === '00:') {
         return substr($tempo, 3);
     }
     return $tempo;
 }
 
-function formatarData($data) {
+function formatarData($data)
+{
     return date('d/m/Y - H:i', strtotime($data));
 }
 
-function abreviarModalidade($modalidade) {
+function abreviarModalidade($modalidade)
+{
     return $modalidade === 'CONTRA O TEMPO' ? 'CONTRA TEMPO' : 'CLÁSSICO';
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,106 +102,59 @@ function abreviarModalidade($modalidade) {
             <span class="material-symbols-outlined">arrow_back_ios</span>
         </a>
     </div>
-    
+
     <section id="ranking">
         <h1>RANKING GLOBAL</h1>
-        
+
         <div class="div-pagina">
-           <div class="div-filtro-box">
-    <form method="GET" action="ranking.php" class="div-filtro">
-        <h2>FILTRAR</h2>
-        
-        <p>TABULEIRO</p>
-        <select class="select-game" name="tabuleiro" aria-label="Filtrar por tamanho do tabuleiro">
-            <option value="">QUALQUER</option>
-            <option value="2" <?= $filtro_tabuleiro == 2 ? 'selected' : '' ?>>2X2</option>
-            <option value="4" <?= $filtro_tabuleiro == 4 ? 'selected' : '' ?>>4X4</option>
-            <option value="6" <?= $filtro_tabuleiro == 6 ? 'selected' : '' ?>>6X6</option>
-            <option value="8" <?= $filtro_tabuleiro == 8 ? 'selected' : '' ?>>8X8</option>
-        </select>
-        
-        <p>MODO DE JOGO</p>
-        <select class="select-game" name="modalidade" aria-label="Filtrar por modo de jogo">
-            <option value="">QUALQUER</option>
-            <option value="CLASSICO" <?= $filtro_modalidade == 'CLASSICO' ? 'selected' : '' ?>>CLÁSSICO</option>
-            <option value="CONTRA O TEMPO" <?= $filtro_modalidade == 'CONTRA O TEMPO' ? 'selected' : '' ?>>CONTRA TEMPO</option>
-        </select>
-        
-        <p>FILTRO</p>
-        <div class="filtros-radio">
-            <input type="radio" id="filtro-tempo" name="ordenacao" value="tempo" <?= $filtro_ordenacao == 'tempo' ? 'checked' : '' ?>>
-            <label for="filtro-tempo" class="label-filtro">TEMPO</label>
-            
-            <input type="radio" id="filtro-jogadas" name="ordenacao" value="jogadas" <?= $filtro_ordenacao == 'jogadas' ? 'checked' : '' ?>>
-            <label for="filtro-jogadas" class="label-filtro">Nº DE JOGADAS</label>
-        </div>
-        
-        <?php
-        // Verifica se há filtros aplicados (através da URL/GET)
-        $filtros_aplicados = isset($_GET['tabuleiro']) || isset($_GET['modalidade']);
-        ?>
-        
-        <?php if (!$filtros_aplicados): ?>
-            <!-- Botão APLICAR - aparece quando NÃO há filtros na URL -->
-            <button type="submit" class="btn-filtro btn-aplicar">
-                APLICAR
-            </button>
-        <?php else: ?>
-            <!-- Botão LIMPAR - aparece quando HÁ filtros na URL -->
-            <a href="ranking.php" class="btn-filtro btn-limpar">
-                LIMPAR<br>FILTROS
-            </a>
-        <?php endif; ?>
-    </form>
-</div>
+            <div class="div-filtro-box">
+                <form method="GET" action="ranking.php" class="div-filtro">
+                    <h2>FILTRAR</h2>
 
-<style>
-.btn-filtro {
-    display: block;
-    width: 100%;
-    margin: 20px auto 0 auto;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 16px;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    box-sizing: border-box;
-    border: 3px solid;
-    transition: all 0.3s ease;
-}
+                    <p>TABULEIRO</p>
+                    <select class="select-game" name="tabuleiro" aria-label="Filtrar por tamanho do tabuleiro">
+                        <option value="">QUALQUER</option>
+                        <option value="2" <?= $filtro_tabuleiro == 2 ? 'selected' : '' ?>>2X2</option>
+                        <option value="4" <?= $filtro_tabuleiro == 4 ? 'selected' : '' ?>>4X4</option>
+                        <option value="6" <?= $filtro_tabuleiro == 6 ? 'selected' : '' ?>>6X6</option>
+                        <option value="8" <?= $filtro_tabuleiro == 8 ? 'selected' : '' ?>>8X8</option>
+                    </select>
 
-.btn-aplicar {
-    background-color: var(--green-blue);
-    color: var(--light-gray);
-    border-color: var(--green-blue);
-}
+                    <p>MODO DE JOGO</p>
+                    <select class="select-game" name="modalidade" aria-label="Filtrar por modo de jogo">
+                        <option value="">QUALQUER</option>
+                        <option value="CLASSICO" <?= $filtro_modalidade == 'CLASSICO' ? 'selected' : '' ?>>CLÁSSICO
+                        </option>
+                        <option value="CONTRA O TEMPO" <?= $filtro_modalidade == 'CONTRA O TEMPO' ? 'selected' : '' ?>>
+                            CONTRA TEMPO</option>
+                    </select>
 
-.btn-aplicar:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
+                    <p>FILTRO</p>
+                    <div class="filtros-radio">
+                        <input type="radio" id="filtro-tempo" name="ordenacao" value="tempo"
+                            <?= $filtro_ordenacao == 'tempo' ? 'checked' : '' ?>>
+                        <label for="filtro-tempo" class="label-filtro">TEMPO</label>
 
-.btn-limpar {
-    background-color: transparent;
-    color: #FF6B6B;
-    border-color: #FF6B6B;
-    line-height: 1.4;
-}
+                        <input type="radio" id="filtro-jogadas" name="ordenacao" value="jogadas"
+                            <?= $filtro_ordenacao == 'jogadas' ? 'checked' : '' ?>>
+                        <label for="filtro-jogadas" class="label-filtro">Nº DE JOGADAS</label>
+                    </div>
 
-.btn-limpar:hover {
-    background-color: #FF6B6B;
-    color: var(--light-gray);
-    transform: translateY(-2px);
-}
-</style>
-            
+                    <?php
+                    $filtros_aplicados = isset($_GET['tabuleiro']) || isset($_GET['modalidade']);
+                    ?>
+
+                        <button type="submit" class="btn-filtro btn-aplicar">
+                            APLICAR
+                        </button>
+                </form>
+            </div>
+
             <div class="div-ranking">
                 <table class="table-ranking">
                     <thead>
                         <tr>
-                            <th class="tr-border-left">#</th>
+                            <th class="tr-border-left"></th>
                             <th>USERNAME</th>
                             <th>TABULEIRO</th>
                             <th>MODALIDADE</th>
@@ -217,12 +171,12 @@ function abreviarModalidade($modalidade) {
                                 $tempo = formatarTempo($row['Duracao_partida']);
                                 $data = formatarData($row['Data_partida']);
                                 $modalidade = abreviarModalidade($row['Modalidade']);
-                                
+
                                 $classe_usuario = '';
                                 if ($usuario_logado_id && $row['Usuario_ID'] == $usuario_logado_id) {
                                     $classe_usuario = 'usuario-logado';
                                 }
-                                
+
                                 echo "<tr class='{$classe_usuario}'>";
                                 echo "<td class='tr-border-left'><strong>{$posicao}</strong></td>";
                                 echo "<td>" . htmlspecialchars($row['Usuario']) . "</td>";
@@ -232,22 +186,14 @@ function abreviarModalidade($modalidade) {
                                 echo "<td><strong>{$row['Jogadas']}</strong></td>";
                                 echo "<td class='tr-border-right'>{$data}</td>";
                                 echo "</tr>";
-                                
-                                $posicao++;
-                            }
-                            
-                            while ($posicao <= 10) {
-                                echo "<tr class='linha-vazia'>";
-                                echo "<td class='tr-border-left'>{$posicao}</td>";
-                                echo "<td colspan='6' class='tr-border-right' style='color: #999; font-style: italic;'></td>";
-                                echo "</tr>";
+
                                 $posicao++;
                             }
                         } else {
                             echo "<tr><td colspan='7' style='text-align: center; padding: 60px 20px; color: #666;'>
-                                    <strong style='font-size: 18px; display: block; margin-bottom: 8px;'></strong>
-                                    <span style='font-size: 14px;'>Tente ajustar os filtros ou seja o primeiro a conquistar este ranking!</span>
-                                  </td></tr>";
+                        <strong style='font-size: 18px; display: block; margin-bottom: 8px;'>Nenhum resultado encontrado.</strong>
+                        <span style='font-size: 14px;'>Tente ajustar os filtros ou seja o primeiro a conquistar este ranking!</span>
+                      </td></tr>";
                         }
                         ?>
                     </tbody>
@@ -267,9 +213,10 @@ function abreviarModalidade($modalidade) {
             <img src="../img/robito_branco.png" alt="Jogar">
         </a>
     </div>
-    
+
     <?php include("./cookies.php"); ?>
 </body>
+
 </html>
 
 <?php

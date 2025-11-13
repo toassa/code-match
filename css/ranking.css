@@ -58,20 +58,20 @@
 }
 
 .tabela-scroll {
-    max-height: 65vh; 
-    overflow-y: auto; 
-}   
+    max-height: 65vh;
+    overflow-y: auto;
+}
 
 .table-ranking {
-    width: 95%; 
+    width: 95%;
     margin: 0 auto;
     border-collapse: separate;
-    border-spacing: 0 10px; 
+    border-spacing: 0 10px;
     padding: 0;
 }
 
 .table-ranking thead {
-    display: table; 
+    display: table;
     width: 100%;
     table-layout: fixed;
     background-color: var(--light-gray);
@@ -80,34 +80,34 @@
     padding: 0;
 }
 
-.table-ranking tbody{
+.table-ranking tbody {
     display: block;
-    max-height: 65vh; 
+    max-height: 65vh;
     overflow-y: scroll;
     width: 100%;
-    padding: 0 10px; 
+    padding: 0 10px;
     background-color: var(--light-gray);
 }
 
 .table-ranking th {
     font-weight: 700;
-    padding: 12px 8px;
+    padding: 0px 8px;
     font-size: 16px;
 }
 
-.table-ranking tr{
+.table-ranking tr {
     text-align: center;
     width: 100%;
     display: table;
     table-layout: fixed;
-    margin: 0;
+    margin: 2px 0;
     border-radius: 5px;
 }
 
 .table-ranking td {
     background-color: var(--orange);
     color: var(--light-gray);
-    padding: 18px 8px;
+    padding: 8px 8px;
     text-align: center;
     font-size: 15px;
 }
@@ -118,7 +118,7 @@
 
 .table-ranking tbody::-webkit-scrollbar-track {
     background-color: var(--dark-red);
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 .table-ranking tbody::-webkit-scrollbar-thumb {
@@ -155,12 +155,12 @@
     color: var(--green-blue);
 }
 
-.div-filtro input[type="radio"]:checked + label {
+.div-filtro input[type="radio"]:checked+label {
     background-color: var(--green-blue);
     color: var(--light-gray);
 }
 
-.label-filtro{
+.label-filtro {
     border: 3px solid var(--green-blue);
     padding: 10px 6px;
     margin-bottom: 10px;
@@ -177,14 +177,13 @@
     width: 100%;
 }
 
-    
+
 .div-filtro-box {
     flex: 1;
-    max-width: 190px;
+    max-width: 350px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin-top: -18px;
 }
 
 
@@ -195,7 +194,8 @@
         gap: 30px;
     }
 
-    .div-filtro-box, .div-ranking {
+    .div-filtro-box,
+    .div-ranking {
         width: 90%;
         max-width: none;
         margin-top: 0;
@@ -217,7 +217,7 @@
 
 .div-ranking {
     flex: 2.2;
-    max-width: 750px; 
+    max-width: 900px;
     background-color: var(--light-gray);
     padding: 0 25px 0 0;
     border-radius: 8px;
@@ -228,10 +228,11 @@
 
 .filtros-radio {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
-    flex-direction: column; 
+    flex-direction: row;
+    width: 100%;
 }
 
 
@@ -251,3 +252,42 @@
     color: var(--green-blue);
 }
 
+.btn-filtro {
+    display: block;
+    width: 100%;
+    margin: 20px auto 0 auto;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    box-sizing: border-box;
+    border: 3px solid;
+    transition: all 0.3s ease;
+}
+
+.btn-aplicar {
+    background-color: var(--green-blue);
+    color: var(--light-gray);
+    border-color: var(--green-blue);
+}
+
+.btn-aplicar:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.btn-limpar {
+    background-color: transparent;
+    color: #FF6B6B;
+    border-color: #FF6B6B;
+    line-height: 1.4;
+}
+
+.btn-limpar:hover {
+    background-color: #FF6B6B;
+    color: var(--light-gray);
+    transform: translateY(-2px);
+}
