@@ -17,11 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (infoTabuleiro) infoTabuleiro.textContent = `Tabuleiro ${tamanho}x${tamanho}`;
   if (infoJogadas) infoJogadas.textContent = "Número de jogadas: 0";
 
-  //cronometro de exemplo (parte do wesley)
-  if (infoTempo && modo === "tempo") {
-    infoTempo.textContent = "01:00";
-  }
-
   //criar tabuleiro
   tabuleiro.style.display = "grid";
   tabuleiro.style.gridTemplateColumns = `repeat(${tamanho}, 1fr)`;
