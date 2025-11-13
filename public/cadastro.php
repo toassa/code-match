@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/globals.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/cadastro.css">
+    <link rel="stylesheet" href="../css/cookies.css">
     <link rel="icon" type="image/jpg" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

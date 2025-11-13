@@ -18,6 +18,7 @@ if (!isset($_SESSION["usuario"])) {
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/config.css">
     <link rel="stylesheet" href="../css/partida.css">
+    <link rel="stylesheet" href="../css/cookies.css">
     <link rel="icon" type="image/jpg" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

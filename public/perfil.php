@@ -87,6 +87,7 @@ $result_historico = $stmt_historico->get_result();
     <link rel="stylesheet" href="../css/config_temporario.css">
     <link rel="stylesheet" href="../css/perfil.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/cookies.css">
     <link rel="icon" type="image/jpg" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +98,7 @@ $result_historico = $stmt_historico->get_result();
 
 <body class="perfil-body">
     <div class="botao-voltar">
-        <a href="javascript:history.back()"><span class="material-symbols-outlined">arrow_back_ios</span></a>
+        <a href="./config.php"><span class="material-symbols-outlined">arrow_back_ios</span></a>
     </div>
 
     <section id="perfil-table">

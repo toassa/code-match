@@ -88,6 +88,7 @@ function abreviarModalidade($modalidade)
     <link rel="stylesheet" href="../css/config.css">
     <link rel="stylesheet" href="../css/ranking.css">
     <link rel="stylesheet" href="../css/config_temporario.css">
+    <link rel="stylesheet" href="../css/cookies.css">
     <link rel="icon" type="image/jpg" href="../img/robito.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

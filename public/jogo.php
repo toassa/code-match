@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../css/partida.css">
   <link rel="stylesheet" href="../css/blur.css">
   <link rel="stylesheet" href="../css/trapaca.css">
+    <link rel="stylesheet" href="../css/cookies.css">
   <link rel="icon" type="image/jpg" href="../img/robito.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
