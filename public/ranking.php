@@ -204,8 +204,8 @@ function abreviarModalidade($modalidade)
     </section>
 
     <div class="partida-buttons buttons-absolute">
-        <a href="index.php" title="Voltar ao início">
-            <span class="material-symbols-outlined">home</span>
+        <a href="../backend/logout.php" title="Sair">
+            <span class="material-symbols-outlined">logout</span>
         </a>
         <a href="perfil.php" title="Meu perfil">
             <span class="material-symbols-outlined">person</span>

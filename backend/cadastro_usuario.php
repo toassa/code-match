@@ -18,11 +18,55 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Erro de conexão: " . $conn->connect_error);
     }
 
+    $stmt = $conn->prepare("SELECT ID FROM Usuarios WHERE Cpf = ?");
+    $stmt->bind_param("s", $cpf);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo "<script>
+                alert('Este CPF já está cadastrado.');
+                window.history.back();
+              </script>";
+        exit;
+    }
+
+    $stmt->close();
+
+    $stmt = $conn->prepare("SELECT ID FROM Usuarios WHERE Email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo "<script>
+                alert('Este e-mail já está cadastrado.');
+                window.history.back();
+              </script>";
+        exit;
+    }
+
+    $stmt->close();
+
+    $stmt = $conn->prepare("SELECT ID FROM Usuarios WHERE Usuario = ?");
+    $stmt->bind_param("s", $usuario);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo "<script>
+                alert('Este nome de usuário já está em uso.');
+                window.history.back();
+              </script>";
+        exit;
+    }
+
+    $stmt->close();
+
     $stmt = $conn->prepare("
         INSERT INTO Usuarios (Nome_Completo, Data_nasc, Cpf, Telefone, Email, Usuario, Senha)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
-    $stmt->bind_param("sssssss", $nome, $dataNascimento, $cpf, $telefone, $email, $usuario, $senhaHash);
 
     if ($stmt === false) {
         die("Erro na preparação: " . $conn->error);

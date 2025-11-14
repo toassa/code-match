@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_COOKIE["logout_msg"])) {
+    echo "<script>alert('".$_COOKIE["logout_msg"]."');</script>";
+    setcookie("logout_msg", "", time() - 3600, "/"); // Apaga o cookie
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

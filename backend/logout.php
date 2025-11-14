@@ -1,8 +1,10 @@
 <?php
-    session_start();
+session_start();
 
-    session_destroy();
+setcookie("logout_msg", "Logout realizado com sucesso!", time() + 3, "/");
 
-    header("Location: ../public/index.php");
-    exit;
+session_destroy();
+
+header("Location: ../public/index.php");
+exit;
 ?>
